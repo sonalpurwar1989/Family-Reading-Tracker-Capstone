@@ -2,7 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.User;
 
-import java.awt.print.Book;
+import com.techelevator.model.Book;
 import java.util.List;
 
 public interface BookDao {
