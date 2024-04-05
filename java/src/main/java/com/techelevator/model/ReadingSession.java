@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public class ReadingSession {
 
+
     private Integer id;
     private User user;
     private Book book;
@@ -12,6 +13,10 @@ public class ReadingSession {
     private Integer durationMinutes;
     private String notes;
     private LocalDateTime sessionDate;
+
+    public ReadingSession() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -81,3 +86,4 @@ public class ReadingSession {
 
     }
 }
+
