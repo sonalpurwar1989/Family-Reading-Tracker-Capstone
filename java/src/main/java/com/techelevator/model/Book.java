@@ -13,7 +13,7 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Book(){}
+    public Book(){};
 
     public Integer getId() {
         return id;
