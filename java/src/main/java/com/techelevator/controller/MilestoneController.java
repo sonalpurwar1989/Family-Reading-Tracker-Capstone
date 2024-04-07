@@ -1,6 +1,5 @@
 package com.techelevator.controller;
 
-
 import com.techelevator.dao.MilestoneDao;
 import com.techelevator.model.Milestone;
 import org.springframework.http.HttpStatus;
@@ -20,26 +19,36 @@ public class MilestoneController {
 
     @GetMapping
     public List<Milestone> getAllMilestones() {
-        return milestoneDao.getAllMilestones();
+        return milestoneDao.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createMilestone(@Valid @RequestBody Milestone milestone) {
-        milestoneDao.createMilestone(milestone);
+        milestoneDao.save(milestone);
     }
 
     @PutMapping("/{milestoneId}")
-    public void updateMilestone(@PathVariable int milestoneId, @Valid @RequestBody Milestone milestone) {
+    public void updateMilestone(@PathVariable Integer milestoneId, @Valid @RequestBody Milestone milestone) {
         milestone.setId(milestoneId);
-        milestoneDao.updateMilestone(milestone);
+        milestoneDao.update(milestone);
     }
 
     @DeleteMapping("/{milestoneId}")
-    public void deleteMilestone(@PathVariable int milestoneId) {
-        milestoneDao.deleteMilestoneById(milestoneId);
+    public void deleteMilestone(@PathVariable Integer milestoneId) {
+        milestoneDao.deleteById(milestoneId);
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

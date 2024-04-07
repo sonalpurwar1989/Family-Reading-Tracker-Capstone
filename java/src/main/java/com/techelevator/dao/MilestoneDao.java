@@ -14,12 +14,4 @@ public interface MilestoneDao {
     void deleteById(Integer id);
 
     List<Milestone> findAll();
-
-    List<Milestone> getAllMilestones();
-
-    void createMilestone(Milestone milestone);
-
-    void updateMilestone(Milestone milestone);
-
-    void deleteMilestoneById(int milestoneId);
 }
