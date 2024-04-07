@@ -14,4 +14,12 @@ public interface PrizeDao {
     void deleteById(Integer id);
 
     List<Prize> findAll();
+
+    void deletePrizeById(int prizeId);
+
+    void updatePrize(Prize prize);
+
+    void createPrize(Prize prize);
+
+    List<Prize> getAllPrizes();
 }
