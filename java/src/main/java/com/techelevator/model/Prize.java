@@ -1,10 +1,14 @@
 package com.techelevator.model;
 
-public class Prizes {
+public class Prize {
     private Integer id;
     private String name;
     private String description;
     private Milestone milestone;
+
+    public Prize() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -38,7 +42,7 @@ public class Prizes {
         this.milestone = milestone;
     }
 
-    public Prizes(Integer id, String name, String description, Milestone milestone) {
+    public Prize(Integer id, String name, String description, Milestone milestone) {
         this.id = id;
         this.name = name;
         this.description = description;

@@ -1,116 +1,114 @@
 package com.techelevator.dao;
-
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.Book;
 import com.techelevator.model.ReadingSession;
 import com.techelevator.model.User;
+import com.techelevator.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import javax.sql.RowSet;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-
 @Component
 public class JdbcReadingSessionDao implements ReadingSessionDao {
     private final JdbcTemplate jdbcTemplate;
-
     @Autowired
     public JdbcReadingSessionDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-    //private RowMapper<ReadingSession> rowMapper = ((rs, rowNum) -> {
-    private class ReadingSessionMapper implements RowMapper<ReadingSession> {
-        public ReadingSession mapRow(ResultSet rs, int rowNum) throws SQLException {
-            ReadingSession session = new ReadingSession();
-            User user = new User();
-            user.setId(rs.getInt("user_id"));
-            session.setUser(user);
-            Book book = new Book();
-            book.setId(rs.getInt("book_id"));
-            session.setBook(book);
-            session.setReadingFormat(rs.getString("reading_format"));
-            session.setDurationMinutes(rs.getInt("duration_minutes"));
-            session.setNotes(rs.getString("notes"));
-            session.setSessionDate(rs.getTimestamp("session_date").toLocalDateTime());
-            return session;
-
-        }
-
-        ;
-
-        /* @Override
-         public ReadingSession findById(Integer id){
-             String sql = "SELECT * FROM reading_sessions WHERE id = ?";
-             return jdbcTemplate.queryForObject(sql, new Object[]{id}, RowMapper);
-         }
-         }
-     */
-  /*  @Override
+    @Override
     public ReadingSession findById(Integer id) {
-        ReadingSession readingSession = null;
-        String sql = "SELECT session_id FROM reading_sessions WHERE session_id = ?";
+        ReadingSession session = null;
+        String sql = "SELECT * FROM reading_sessions WHERE session_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
-                readingSession = mapRowToReadingSession(results);
+                session = mapRowToReadingSession(results);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return readingSession;
-    }*/
+        return session;
+    }
+    @Override
+    public void save(ReadingSession session) {
+        String sql = "INSERT INTO reading_sessions (user_id, book_id, reading_format, duration_minutes, notes, session_date) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            jdbcTemplate.update(sql, session.getUser().getId(), session.getBook().getId(),
+                    session.getReadingFormat(), session.getDurationMinutes(), session.getNotes(),
+                    session.getSessionDate());
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Unable to save the reading session", e);
         }
-
-    @Override
-    public ReadingSession findById(Integer id) {
-        String sql = "SELECT * FROM reading_sessions WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new ReadingSessionMapper());
-
     }
-
     @Override
-    public List<ReadingSession> findAll() {
-        String sql = "SELECT * FROM reading_sessions";
-        return jdbcTemplate.query(sql, new ReadingSessionMapper());
+    public void update(ReadingSession session) {
+        String sql = "UPDATE reading_sessions SET user_id = ?, book_id = ?, reading_format = ?, " +
+                "duration_minutes = ?, notes = ?, session_date = ? WHERE session_id = ?";
+        try {
+            jdbcTemplate.update(sql, session.getUser().getId(), session.getBook().getId(),
+                    session.getReadingFormat(), session.getDurationMinutes(), session.getNotes(),
+                    session.getSessionDate(), session.getId());
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Unable to update the reading session", e);
+        }
     }
-
-    @Override
-    public void save(ReadingSession readingSession) {
-        String sql = "INSERT INTO reading_sessions(usr_id, book_id, reading_format,duration_minutes, notes, session_date) VALUES(?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql,
-                readingSession.getUser().getId(),
-                readingSession.getBook().getId(),
-                readingSession.getReadingFormat(),
-                readingSession.getDurationMinutes(),
-                readingSession.getNotes(),
-                readingSession.getSessionDate());
-    }
-
-    @Override
-    public void update(ReadingSession readingSession) {
-        String sql = "UPDATE reading_sessions SET user_id = ?, book_id = ?, duration_minutes = ?, notes = ?, sessions_date = ? WHERE id = ?";
-        jdbcTemplate.update(sql,
-                readingSession.getUser().getId(),
-                readingSession.getBook().getId(),
-                readingSession.getReadingFormat(),
-                readingSession.getDurationMinutes(),
-                readingSession.getNotes(),
-                readingSession.getSessionDate(),
-                readingSession.getId());
-
-    }
-
     @Override
     public void deleteById(Integer id) {
-        String sql = "DELETE FROM reading_sessions WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-
+        String sql = "DELETE FROM reading_sessions WHERE session_id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Unable to delete the reading session", e);
+        }
+    }
+    @Override
+    public List<ReadingSession> findAll() {
+        List<ReadingSession> sessions = new ArrayList<>();
+        String sql = "SELECT * FROM reading_sessions";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                sessions.add(mapRowToReadingSession(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return sessions;
+    }
+    private ReadingSession mapRowToReadingSession(SqlRowSet rs) {
+        ReadingSession session = new ReadingSession();
+        session.setId(rs.getInt("session_id"));
+        User user = new User();
+        user.setId(rs.getInt("user_id"));
+        session.setUser(user);
+        Book book = new Book();
+        book.setId(rs.getInt("book_id"));
+        session.setBook(book);
+        session.setReadingFormat(rs.getString("reading_format"));
+        session.setDurationMinutes(rs.getInt("duration_minutes"));
+        session.setNotes(rs.getString("notes"));
+        session.setSessionDate(rs.getTimestamp("session_date").toLocalDateTime());
+        return session;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

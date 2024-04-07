@@ -12,6 +12,10 @@ public class Milestone {
     private LocalDate endDate;
     private Integer maxPrizes;
 
+    public Milestone() {
+
+    }
+
     public Integer getId() {
         return id;
     }
