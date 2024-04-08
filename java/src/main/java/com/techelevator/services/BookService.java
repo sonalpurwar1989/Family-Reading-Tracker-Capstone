@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class BookService {
     private final RestTemplate restTemplate;
-    private static final String OPEN_LIBRARY_API_URL = "https://openlibrary.org/isbn";
+    private static final String OPEN_LIBRARY_API_URL = "https://openlibrary.org/isbn/";
     private static final String OPEN_LIBRARY_COVERS_URL = "https://covers.openlibrary.org/a/olid";
     private String authToken = null;
 

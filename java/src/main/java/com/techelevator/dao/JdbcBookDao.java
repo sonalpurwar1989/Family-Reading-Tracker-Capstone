@@ -25,7 +25,7 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book getBookById(Integer id) {
-        String sql = "SELECT * FROM books WHERE id = ?";
+        String sql = "SELECT * FROM books WHERE book_id = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BookMapper());
     }
 
@@ -37,13 +37,13 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public void deleteBookById(Integer id) {
-        String sql = "DELETE FROM books WHERE id = ?";
+        String sql = "DELETE FROM books WHERE book_id = ?";
         jdbcTemplate.update(sql, id);
     }
 
 
     public void updateBook(Book book) {
-        String sql = "UPDATE books SET title = ?, author = ?, isbn = ? WHERE id = ?";
+        String sql = "UPDATE books SET title = ?, author = ?, isbn = ? WHERE book_id = ?";
         jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getIsbn(), book.getId());
     }
 
@@ -56,7 +56,7 @@ public class JdbcBookDao implements BookDao {
         @Override
         public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
             Book book = new Book();
-            book.setId(rs.getInt("id"));
+            book.setId(rs.getInt("book_id"));
             book.setTitle(rs.getString("title"));
             book.setAuthor(rs.getString("author"));
             book.setIsbn(rs.getString("isbn"));
