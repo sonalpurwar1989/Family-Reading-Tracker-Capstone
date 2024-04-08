@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 -----------------------------
 
-CREATE TABLE IF NOT EXISTS books(
+CREATE TABLE IF NOT EXISTS book(
 book_id SERIAL PRIMARY KEY,
 title VARCHAR(50) NOT NULL,
 author VARCHAR(50),
