@@ -21,8 +21,8 @@ author VARCHAR(50),
 isbn VARCHAR(20) UNIQUE
 );
 
-CREATE TABLE families(
-familiy_id SERIAL PRIMARY KEY,
+CREATE TABLE family(
+family_id SERIAL PRIMARY KEY,
 family_name VARCHAR(30) UNIQUE NOT NULL
 );
 
