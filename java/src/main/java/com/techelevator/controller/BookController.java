@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.BookDao;
 import com.techelevator.model.Book;
+import com.techelevator.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,9 +14,11 @@ import java.util.List;
 public class BookController {
 
     private final BookDao bookDao;
+    private final BookService bookService;
 
-    public BookController(BookDao bookDao) {
+    public BookController(BookDao bookDao, BookService bookService) {
         this.bookDao = bookDao;
+        this.bookService = bookService;
     }
 
     @RequestMapping(path = "/books", method = RequestMethod.GET)
@@ -56,5 +59,10 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found.");
         }
         bookDao.deleteBookById(id);
+    }
+
+    @GetMapping("/books")
+    public Book getBookByISBN(@RequestParam String isbn) {
+        return bookService.getBookByISBN(isbn);
     }
 }

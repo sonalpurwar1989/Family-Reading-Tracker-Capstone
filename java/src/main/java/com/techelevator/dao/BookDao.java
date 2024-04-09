@@ -1,8 +1,7 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.User;
-
 import com.techelevator.model.Book;
+
 import java.util.List;
 
 public interface BookDao {
@@ -16,7 +15,5 @@ public interface BookDao {
     void updateBook(Book book);
 
     void saveBook(Book book);
-
-
-
+    Book getBookByISBN(String isbn);
 }
