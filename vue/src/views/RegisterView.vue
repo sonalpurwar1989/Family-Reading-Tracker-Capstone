@@ -73,6 +73,54 @@ export default {
 </script>
 
 <style scoped>
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+/* Page styling */
+#login {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 85%;
+  padding: .5rem;
+  border: 2px solid #b8b0b0;
+  border-radius: 10px;
+}
+
+button[type="submit"] {
+  background-color: #844cc5;
+  color: #111111;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3527b1;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }
