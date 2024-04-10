@@ -14,16 +14,28 @@ public class User {
    private String password;
    @JsonIgnore
    private boolean activated;
+   private int minutesRead;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public int getMinutesRead() {
+      return minutesRead;
+   }
+
+   public void setMinutesRead(int minutesRead) {
+      this.minutesRead = minutesRead;
+   }
+
+   public User(int id, String username, String password, String authorities, int minutesRead) {
       this.id = id;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.minutesRead = minutesRead;
+
+
    }
 
    public int getId() {
