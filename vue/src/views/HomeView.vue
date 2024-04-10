@@ -9,7 +9,10 @@
       <router-link :to="{ name: 'milestones'}">
       <button class="main-button">Milestones</button>
     </router-link>
+    <router-link :to="{ name: 'prizes'}" >
+    
       <button class="main-button">Prizes</button>
+    </router-link>
       <div class="start-stop-buttons">
         <button class="secondary-button">Start</button>
         <button class="secondary-button">Stop</button>

@@ -47,6 +47,14 @@ const routes = [
     meta: {
       requiresAuth: true // Requires authentication
     }
+  },
+  {
+    path: '/prizes',
+    name: 'prizes',
+    component: PrizeView,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 const router = createRouter({
