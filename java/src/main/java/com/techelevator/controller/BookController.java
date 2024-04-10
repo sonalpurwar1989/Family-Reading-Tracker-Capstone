@@ -61,7 +61,7 @@ public class BookController {
         bookDao.deleteBookById(id);
     }
 
-    @GetMapping("/books")
+    @GetMapping("/search")
     public Book getBookByISBN(@RequestParam String isbn) {
         return bookService.getBookByISBN(isbn);
     }
