@@ -39,11 +39,12 @@ public class ReadingSessionService {
         }
     }
     public void recordReadingSession(ReadingSession readingSession) {
-        int milestoneMinutes = 1000;
+        int milestoneMinutes = 300;
         User user = readingSession.getUser();
         user.setMinutesRead(user.getMinutesRead() + readingSession.getDurationMinutes());
         if (user.getMinutesRead() >= milestoneMinutes) {
-            System.out.println("Congratulations! You've reached the milestone of 1000 minutes!");
+            System.out.println("Congratulations! You've reached the milestone of 300 minutes!");
+            System.out.println("Prize unlocked, Your choice between Ice Cream or Vinyl Sticker");
         }
     }
 }

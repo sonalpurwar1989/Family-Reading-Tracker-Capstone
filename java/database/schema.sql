@@ -10,7 +10,7 @@ CREATE TABLE users (
     password_hash VARCHAR(200) NOT NULL,
     role VARCHAR(50) NOT NULL,
     family_id INTEGER,
-    FOREIGN KEY (family_id) REFERENCES families(family_id)
+    FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
 CREATE TABLE book (
     book_id SERIAL PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE book (
     author VARCHAR(50),
     isbn VARCHAR(20) UNIQUE
 );
-CREATE TABLE familY (
+CREATE TABLE family (
     family_id SERIAL PRIMARY KEY,
     family_name VARCHAR(30) UNIQUE NOT NULL
 );
