@@ -4,8 +4,12 @@
     <p class="welcome-text">Welcome to Bookworm Buddies</p>
     <p class="subtext">Family Reading Tracker</p>
     <img class="library-image" src="@/assets/Images/_4802ec2d-e5f5-454a-8d57-6569c878c3f1.jpg" alt="Library Name">
+
     <div class="button-container">
+
+      <router-link :to="{ name: 'book-search' }">
       <button class="main-button">Book Search</button>
+      </router-link>
       <router-link :to="{ name: 'milestones'}">
       <button class="main-button">Milestones</button>
     </router-link>

@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import MilestoneView from '../views/MilestoneView.vue'; // Import MilestoneView component
+import BookView from '../views/BookView.vue'; // Import Book Search page
 const routes = [
   {
     path: '/',
@@ -46,7 +47,12 @@ const routes = [
     meta: {
       requiresAuth: true // Requires authentication
     }
-  }
+  },
+  {
+    path: '/books',
+    name: 'book-search',
+    component: BookView,
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
