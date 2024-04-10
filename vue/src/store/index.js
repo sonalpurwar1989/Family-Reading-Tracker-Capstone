@@ -28,3 +28,4 @@ export function createStore(currentToken, currentUser) {
   });
   return store;
 }
+
