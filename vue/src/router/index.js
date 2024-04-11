@@ -6,8 +6,10 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import MilestoneView from '../views/MilestoneView.vue'; // Import MilestoneView component
-import PrizeView from '../components/PrizeView.vue';
+import PrizeView from '../components/PrizeView.vue'; // Import Prize View Page
 import BookView from '../views/BookView.vue'; // Import Book Search page
+import SelectUser from '../views/SelectUser.vue'; // Import Select User page
+import ChildView from '../views/ChildView.vue'; // Import Select 
 const routes = [
   {
     path: '/',
@@ -42,11 +44,11 @@ const routes = [
     }
   },
   {
-    path: '/milestones', // Route for MilestoneView
+    path: '/milestones',
     name: 'milestones',
     component: MilestoneView,
     meta: {
-      requiresAuth: true // Requires authentication
+      requiresAuth: true
     }
   },
   {
@@ -61,6 +63,16 @@ const routes = [
     path: '/books',
     name: 'book-search',
     component: BookView
+  },
+  {
+    path: '/select-user',
+    name: 'select-user',
+    component: SelectUser
+  },
+  {
+    path: '/child-view',
+    name: 'child-view',
+    component: ChildView
   }
 ];
 const router = createRouter({

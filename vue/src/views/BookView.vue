@@ -1,9 +1,13 @@
 <template>
   <div class="book-view">
-    <input type="text" v-model="searchQuery" @input="searchBooks" placeholder="Search for books..." class="search-input">
+    <input type="text" v-model="searchQuery" @input="searchBooks" placeholder="Search by ISBN, Title, UPC" class="search-input">
     <ul class="book-list">
       <li v-for="book in books" :key="book.key" class="book-item">
-        {{ book.title }} by {{ book.author_name.join(', ') }}
+        <img :src="getCoverURL(book.isbn)" class="book-cover" alt="Book Cover">
+        <div class="book-details">
+          <p class="book-title">{{ book.title }}</p>
+          <p class="book-author">by {{ book.author_name.join(', ') }}</p>
+        </div>
       </li>
     </ul>
   </div>
@@ -15,31 +19,66 @@ export default {
       searchQuery: '',
       books: []
     };
+  },
+  methods: {
+    searchBooks() {
+      // Implement the barcode search logic here -- Have to find one but hopefully it works
+    },
+    getCoverURL(isbn) {
+      return `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg`;
+    }
   }
 };
 </script>
 <style scoped>
 .book-view {
-  background-color: #F0F4F8; /* Match the background color of the HomeView page */
+  background-color: #FFF5EA; /* Light peach */
   text-align: center;
   padding: 50px;
+  font-family: 'Arial', sans-serif;
 }
 .search-input {
   margin-bottom: 30px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #FF6F61; /* Coral border */
+  border-radius: 8px;
+  outline: none;
+}
+.search-input::placeholder {
+  color: #2D3142; /* Dark blue placeholder text */
 }
 .book-list {
   list-style: none;
   padding: 0;
 }
 .book-item {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
-  font-size: 18px;
+}
+.book-cover {
+  width: 25px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+.book-details {
+  text-align: left;
+}
+.book-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #FF6F61; /* Coral title text */
+}
+.book-author {
+  font-size: 16px;
+  color: #2D3142; /* Dark blue author text */
 }
 </style>
+
+
 
 
 
