@@ -21,12 +21,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping(path = "/books", method = RequestMethod.GET)
+    @RequestMapping(path = "/book", method = RequestMethod.GET)
     public List<Book> getAllBooks() {
         return bookDao.getAllBooks();
     }
 
-    @RequestMapping(path = "/books/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/book/{id}", method = RequestMethod.GET)
     public Book getBookById(@PathVariable Integer id) {
         Book book = bookDao.getBookById(id);
         if (book == null) {
@@ -35,13 +35,13 @@ public class BookController {
         return book;
     }
 
-    @RequestMapping(path = "/books", method = RequestMethod.POST)
+    @RequestMapping(path = "/book", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void addBook(@Valid @RequestBody Book book) {
         bookDao.saveBook(book);
     }
 
-    @RequestMapping(path = "/books/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/book/{id}", method = RequestMethod.PUT)
     public void updateBook(@PathVariable Integer id, @Valid @RequestBody Book book) {
         Book existingBook = bookDao.getBookById(id);
         if (existingBook == null) {
@@ -51,7 +51,7 @@ public class BookController {
         bookDao.updateBook(book);
     }
 
-    @RequestMapping(path = "/books/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/book/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Integer id) {
         Book existingBook = bookDao.getBookById(id);
@@ -61,8 +61,10 @@ public class BookController {
         bookDao.deleteBookById(id);
     }
 
-    @GetMapping("/search")
+
+    @RequestMapping(path = "/isbn/", method = RequestMethod.GET)
     public Book getBookByISBN(@RequestParam String isbn) {
+        String tempISBN = isbn;
         return bookService.getBookByISBN(isbn);
     }
 }
