@@ -7,3 +7,17 @@
     <router-view />
   </div>
 </template>
+<style scoped>
+#capstone-app {
+  font-family: Arial, sans-serif;
+}
+#nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+#nav a {
+  color: #fff;
+  text-decoration: none;
+}
+</style>

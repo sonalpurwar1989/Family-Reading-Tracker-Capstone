@@ -1,7 +1,7 @@
 <template>
   <div class="milestone-view">
     <h1>Milestone Details</h1>
-    <router-link :to="{ name: 'milestones' }">Back to Milestones</router-link>
+    <router-link :to="{ name: 'milestones' }" class="back-link">Back to Milestones</router-link>
     <div v-if="milestone">
       <p><strong>Title:</strong> {{ milestone.title }}</p>
       <p><strong>Status:</strong> {{ milestone.status }}</p>
@@ -15,7 +15,7 @@
     <div v-else>
       <p>No milestone found.</p>
     </div>
-    <router-link :to="{ name: 'home' }"> HOME </router-link>
+    <router-link :to="{ name: 'home' }" class="home-link"> HOME </router-link>
     <!-- Reading minute counter -->
     <div class="reading-minute-counter">{{ readingMinutes }}</div>
   </div>
@@ -25,56 +25,59 @@ export default {
   data() {
     return {
       milestone: {
-        
         title: "MILESTONES",
         status: "In Progress",
-        progress: 60 // Assuming the progress is in percentage
+        progress: 75 
       },
-      readingMinutes: 0 // Initialize reading minutes counter
+      readingMinutes: 0 
     };
   }
 };
 </script>
 <style scoped>
-body {
-  background-color: #318294;
-}
 .milestone-view {
+  background-color: #F0F4F8; /* Match the background color of the HomeView page */
   max-width: 800px;
   margin: auto;
   padding: 50px;
-  border-radius: 5%; 
+  border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add light drop shadow */
   position: relative; /* Position for reading minute counter */
+}
+h1 {
+  color: #2E4369; /* Match the heading color of the HomeView page */
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.back-link,
+.home-link {
+  color: #4A5568; /* Match the link color of the HomeView page */
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: block;
+}
+.back-link:hover,
+.home-link:hover {
+  text-decoration: underline;
 }
 .progress-container {
   margin-top: 20px;
 }
 .progress-bar {
-  background-color: #0717f0;
+  background-color: #4CAF50; /* Match the button color of the HomeView page */
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
 }
 .progress {
-  background-color: #20cf37;
+  background-color: #47B881; /* Match the button hover color of the HomeView page */
   height: 100%;
-}
-.router-link-exact-active {
-  color: white; /* Change link color when active */
 }
 .reading-minute-counter {
   position: absolute;
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: rgb(10, 8, 8);
+  color: #4A5568; /* Match the text color of the HomeView page */
 }
 </style>
-
-
-
-
-
-
-

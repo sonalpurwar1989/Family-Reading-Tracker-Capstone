@@ -1,25 +1,23 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p class="welcome-text">Welcome to Bookworm Buddies</p>
-    <p class="subtext">Family Reading Tracker</p>
-    <img class="library-image" src="@/assets/Images/_4802ec2d-e5f5-454a-8d57-6569c878c3f1.jpg" alt="Library Name">
-
+    <h1>Welcome to Bookworm Buddies</h1>
+    <p class="welcome-text">Discover the joy of reading together!</p>
+    <div class="image-container">
+      <img class="library-image" src="@/assets/Images/_4802ec2d-e5f5-454a-8d57-6569c878c3f1.jpg" alt="Library">
+    </div>
     <div class="button-container">
-
       <router-link :to="{ name: 'book-search' }">
-      <button class="main-button">Book Search</button>
+        <button class="main-button">Find Books</button>
       </router-link>
       <router-link :to="{ name: 'milestones'}">
-      <button class="main-button">Milestones</button>
-    </router-link>
-    <router-link :to="{ name: 'prizes'}" >
-    
-      <button class="main-button">Prizes</button>
-    </router-link>
+        <button class="main-button">Milestones</button>
+      </router-link>
+      <router-link :to="{ name: 'prizes'}">
+        <button class="main-button">Prizes</button>
+      </router-link>
       <div class="start-stop-buttons">
-        <button class="secondary-button">Start</button>
-        <button class="secondary-button">Stop</button>
+        <button class="secondary-button">Start Reading</button>
+        <button class="secondary-button">Stop Reading</button>
       </div>
     </div>
   </div>
@@ -30,58 +28,64 @@ export default {
 </script>
 <style scoped>
 .home {
+  background-color: #F0F4F8;
   text-align: center;
-  margin-top: 50px;
+  padding: 50px;
+  font-family: 'Arial', sans-serif;
+}
+h1 {
+  color: #2E4369;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 .welcome-text {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-  text-decoration: underline;
+  color: #4A5568;
+  margin-bottom: 40px;
 }
-.subtext {
-  font-size: 18px;
-  margin-bottom: 20px;
+.image-container {
+  margin-bottom: 25px;
 }
 .library-image {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  max-width: 200px;
+  max-width: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .button-container {
-  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .main-button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
+  margin: 0 10px 20px;
+  padding: 12px 30px;
+  font-size: 18px;
+  background-color: #47B881;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.main-button:hover {
+  background-color: #2CA774;
 }
 .secondary-button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  font-size: 14px;
-  background-color: #2196F3;
+  margin: 0 10px 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3182CE;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.start-stop-buttons {
-  margin-top: 20px;
+.secondary-button:hover {
+  background-color: #2B6CB0;
 }
 </style>
-
-
-
-
-
 
 
 
