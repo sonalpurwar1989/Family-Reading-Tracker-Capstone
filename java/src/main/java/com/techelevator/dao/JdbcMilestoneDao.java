@@ -93,8 +93,8 @@ public class JdbcMilestoneDao implements MilestoneDao {
         milestone.setDescription(rs.getString("description"));
         milestone.setMinutesRequired(rs.getInt("minutes_required"));
         milestone.setMaxPrizes(rs.getInt("max_prizes"));
-        milestone.setStartDate(rs.getObject("start_date", LocalDate.class));
-        milestone.setEndDate(rs.getObject("end_date", LocalDate.class));
+        milestone.setStartDate(rs.getDate("start_date").toLocalDate());
+        milestone.setEndDate(rs.getDate("end_date").toLocalDate());
         return milestone;
     }
 }

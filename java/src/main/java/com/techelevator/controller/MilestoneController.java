@@ -1,3 +1,5 @@
+
+
 package com.techelevator.controller;
 
 import com.techelevator.dao.MilestoneDao;
@@ -17,30 +19,28 @@ public class MilestoneController {
         this.milestoneDao = milestoneDao;
     }
 
-    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public List<Milestone> getAllMilestones() {
         return milestoneDao.findAll();
     }
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createMilestone(@Valid @RequestBody Milestone milestone) {
         milestoneDao.save(milestone);
     }
 
-    @PutMapping("/{milestoneId}")
+    @RequestMapping(value = "/{milestoneId}", method = RequestMethod.PUT)
     public void updateMilestone(@PathVariable Integer milestoneId, @Valid @RequestBody Milestone milestone) {
         milestone.setId(milestoneId);
         milestoneDao.update(milestone);
     }
 
-    @DeleteMapping("/{milestoneId}")
+    @RequestMapping(value = "/{milestoneId}", method = RequestMethod.DELETE)
     public void deleteMilestone(@PathVariable Integer milestoneId) {
         milestoneDao.deleteById(milestoneId);
     }
 }
-
-
 
 
 

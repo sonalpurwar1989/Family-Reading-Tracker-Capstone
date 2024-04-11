@@ -16,6 +16,46 @@ public class User {
    private boolean activated;
    private int minutesRead;
    private Set<Authority> authorities = new HashSet<>();
+   private String userType;
+   private String familiyId;
+
+   public String getUserType() {
+      return userType;
+   }
+
+   public void setUserType(String userType) {
+      this.userType = userType;
+   }
+
+   public void setFamiliyId(String familiyId) {
+      this.familiyId = familiyId;
+   }
+
+   public void setEmailId(String emailId) {
+      this.emailId = emailId;
+   }
+
+   public String getFamiliyId() {
+      return familiyId;
+   }
+
+   public String getEmailId() {
+      return emailId;
+   }
+
+   public User(int id, String username, String password, boolean activated, int minutesRead, Set<Authority> authorities, String userType, String familiyId, String emailId) {
+      this.id = id;
+      this.username = username;
+      this.password = password;
+      this.activated = activated;
+      this.minutesRead = minutesRead;
+      this.authorities = authorities;
+      this.userType = userType;
+      this.familiyId = familiyId;
+      this.emailId = emailId;
+   }
+
+   private String emailId;
 
    public User() { }
 
