@@ -60,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/books',
+    path: '/book',
     name: 'book-search',
     component: BookView
   },

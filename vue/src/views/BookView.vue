@@ -6,13 +6,15 @@
         <img :src="getCoverURL(book.isbn)" class="book-cover" alt="Book Cover">
         <div class="book-details">
           <p class="book-title">{{ book.title }}</p>
-          <p class="book-author">by {{ book.author_name.join(', ') }}</p>
+          <p class="book-author">by {{ Array.isArray(book.author) ? book.author_name.join(', ') : book.author }}</p>
         </div>
       </li>
     </ul>
   </div>
 </template>
 <script>
+import BookService from '../services/BookService';
+
 export default {
   data() {
     return {
@@ -26,8 +28,22 @@ export default {
     },
     getCoverURL(isbn) {
       return `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg`;
-    }
+    },
+    
+    getAllBooks() {
+      // TODO - Get data from API and set `topics` property
+      BookService.getAllBooks()
+      .then(response => {
+        console.log(response.data);
+        this.books = response.data;
+      });
   }
+  
+  },
+  created() {
+    this.getAllBooks();
+  }
+  
 };
 </script>
 <style scoped>
