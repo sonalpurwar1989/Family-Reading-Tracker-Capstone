@@ -9,7 +9,8 @@ import MilestoneView from '../views/MilestoneView.vue'; // Import MilestoneView 
 import PrizeView from '../components/PrizeView.vue'; // Import Prize View Page
 import BookView from '../views/BookView.vue'; // Import Book Search page
 import SelectUser from '../views/SelectUser.vue'; // Import Select User page
-import ChildView from '../views/ChildView.vue'; // Import Select 
+import ChildView from '../views/ChildView.vue'; // Import Child View
+import SettingsView from '../views/SettingsView.vue'
 const routes = [
   {
     path: '/',
@@ -73,6 +74,11 @@ const routes = [
     path: '/child-view',
     name: 'child-view',
     component: ChildView
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: SettingsView
   }
 ];
 const router = createRouter({
