@@ -63,8 +63,8 @@ public class BookController {
     }
 
 
-    @RequestMapping(path = "/isbn/", method = RequestMethod.GET)
-    public Book getBookByISBN(@RequestParam String isbn) {
+    @RequestMapping(path = "/isbn/{isbn}", method = RequestMethod.GET)
+    public Book getBookByISBN(@PathVariable String isbn) {
         String tempISBN = isbn;
         return bookService.getBookByISBN(isbn);
     }

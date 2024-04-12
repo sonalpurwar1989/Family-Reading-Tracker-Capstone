@@ -1,6 +1,7 @@
 package com.techelevator.services;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,12 +30,25 @@ public class BookService {
     public Book getBookByISBN(String isbn) {
         String apiUrl = OPEN_LIBRARY_API_URL + isbn + ".json";
         try {
-            ResponseEntity<Book> response = restTemplate.exchange(apiUrl, HttpMethod.GET, makeAuthEntity(), Book.class);
-            return response.getBody();
+            SearchResult isr = restTemplate.getForObject(apiUrl, SearchResult.class);
+            isr.setSearchISBN(isbn);
+            return mapSearchResultToBook(isbn, isr);
         } catch (RestClientException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private Book mapSearchResultToBook (String isbnSearchValue, SearchResult sr){
+
+        Book foundBook = new Book();
+
+        foundBook.setTitle( sr.getTitle());
+        foundBook.setIsbn( sr.getSearchISBN());
+        foundBook.setAuthor( "");
+        foundBook.setCoverURL( "https://covers.openlibrary.org/b/isbn/" +  isbnSearchValue.trim()+ "-M.jpg" );
+
+        return foundBook;
     }
 
     private HttpEntity<Void> makeAuthEntity() {

@@ -5,6 +5,7 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
+    private String coverURL;
 
     public Book(Integer id, String title, String author, String isbn) {
         this.id = id;
@@ -13,7 +14,23 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Book(Integer id, String title, String author, String isbn, String coverURL) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.coverURL = coverURL;
+    }
+
     public Book(){};
+
+    public String getCoverURL() {
+        return coverURL;
+    }
+
+    public void setCoverURL(String coverURL) {
+        this.coverURL = coverURL;
+    }
 
     public Integer getId() {
         return id;
