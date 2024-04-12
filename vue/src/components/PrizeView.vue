@@ -1,5 +1,9 @@
 <template>
   <div class="prize-view">
+    <div class="nav">
+      <button @click="goHome" class="home-button">Home</button>
+      <button @click="logout" class="logout-button">Logout</button>
+    </div>
     <div class="prize-type" v-for="(prizeGroup, index) in prizeGroups" :key="index">
       <h2>{{ prizeGroup.type }}</h2>
       <div class="prize-list">
@@ -18,10 +22,6 @@
     <div class="add-prize-container">
       <input type="text" v-model="newPrize.name" placeholder="Enter prize name" class="prize-input">
       <input type="number" v-model="newPrize.hours" placeholder="Enter hours" class="prize-input">
-      <label for="image-upload" class="file-upload">
-        <span>Choose Image</span>
-        <input id="image-upload" type="file" @change="onFileChange" accept="image/*" class="prize-input">
-      </label>
       <button @click="addPrize" class="add-prize-button">Add Prize</button>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
       newPrize: {
         name: "",
         hours: null,
-        image: null
+        image: "src/assets/images/fireworks_2_by_daxxe_d2uww7c.jpg"
       }
     };
   },
@@ -70,21 +70,10 @@ export default {
   },
   methods: {
     addPrize() {
-      if (this.newPrize.name && this.newPrize.hours && this.newPrize.image) {
+      if (this.newPrize.name && this.newPrize.hours) {
         this.prizes.push({ ...this.newPrize });
         this.newPrize.name = "";
         this.newPrize.hours = null;
-        this.newPrize.image = null;
-      }
-    },
-    onFileChange(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.newPrize.image = e.target.result;
-        };
-        reader.readAsDataURL(file);
       }
     },
     purchasePrize(prize) {
@@ -98,16 +87,43 @@ export default {
     removePrize(prize) {
       // Logic to remove prize
       console.log("Removed:", prize);
+    },
+    goHome() {
+      // Logic to navigate to home
+      console.log("Go Home");
+    },
+    logout() {
+      // Logic to logout
+      console.log("Logout");
     }
   }
 };
 </script>
 <style scoped>
 .prize-view {
-  background-color: #FFF5EA; /* Light peach */
   text-align: center;
   padding: 50px;
   font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #1bbd43, #143cf1);
+}
+.nav {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.home-button, .logout-button {
+  margin: 0 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to bottom right, #6A0572, #96ff66);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.home-button:hover, .logout-button:hover {
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
 }
 .prize-type {
   margin-bottom: 40px;
@@ -146,18 +162,17 @@ export default {
   margin-top: 10px;
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #FFD166; /* Yellow */
-  color: #2D3142; /* Dark blue */
+  background-color: #0beb70;
+  color: #f6f3f8;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 .prize-button:hover {
-  background-color: #FF9F51; /* Orange */
+  background-color: #0e5dc5;
 }
 .add-prize-container {
-  margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,32 +181,25 @@ export default {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #47B881; /* Light green */
+  border: 2px solid #2d7ea3;
   border-radius: 8px;
   outline: none;
 }
-.add-prize-button, .file-upload {
+.add-prize-button {
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #6A0572; /* Purple */
+  background-color: #18ac13;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 0 10px; /* Adjust the spacing between the buttons */
+  margin: 0 10px;
 }
-.add-prize-button:hover, .file-upload:hover {
-  background-color: #FF4E00; /* Red */
-}
-.file-upload input[type="file"] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
+.add-prize-button:hover {
+  background-color: #96143f;
 }
 </style>
+
+
+

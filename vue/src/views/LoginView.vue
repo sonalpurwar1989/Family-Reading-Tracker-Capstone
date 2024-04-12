@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h1>Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -18,14 +18,13 @@
       </div>
       <button type="submit">Sign in</button>
       <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+        <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      </p>
     </form>
   </div>
 </template>
-
 <script>
 import authService from "../services/AuthService";
-
 export default {
   components: {},
   data() {
@@ -50,7 +49,6 @@ export default {
         })
         .catch(error => {
           const response = error.response;
-
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
@@ -59,18 +57,15 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 #error-message {
   color: red;
   margin-top: 10px;
 }
-
 .success-message {
   color: green;
   margin-top: 10px;
 }
-
 /* Page styling */
 #login {
   max-width: 400px;
@@ -79,25 +74,21 @@ export default {
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .form-input-group {
   margin-bottom: 1rem;
 }
-
 label {
   margin-right: 0.5rem;
 }
-
 input[type="text"],
 input[type="password"] {
   width: 85%;
   padding: .5rem;
-  border: 2px solid #b8b0b0;
+  border: 2px solid #B8B0B0;
   border-radius: 10px;
 }
-
 button[type="submit"] {
-  background-color: #844cc5;
+  background-color: #844CC5;
   color: #111111;
   padding: 0.5rem 1rem;
   border: none;
@@ -105,8 +96,7 @@ button[type="submit"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 button[type="submit"]:hover {
-  background-color: #3527b1;
+  background-color: #3527B1;
 }
 </style>

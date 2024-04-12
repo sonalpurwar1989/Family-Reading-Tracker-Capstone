@@ -21,6 +21,10 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" placeholder="Confirm your password" required />
       </div>
+      <div class="form-input-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" v-model="user.age" placeholder="Enter your age" required />
+      </div>
       <button type="submit">Create Account</button>
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
@@ -36,6 +40,7 @@ export default {
         email: '',
         password: '',
         confirmPassword: '',
+        age: '',
         role: 'user',
       },
       registrationErrors: false,
@@ -83,6 +88,8 @@ export default {
   color: green;
   margin-top: 10px;
 }
+
+/* I want to sleep lol */
 /* Page styling */
 #register {
   max-width: 400px;
@@ -99,14 +106,15 @@ label {
 }
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   width: 85%;
   padding: .5rem;
-  border: 2px solid #F94144; /* Red */
+  border: 2px solid #F94144; 
   border-radius: 10px;
 }
 button[type="submit"] {
-  background-color: #F3722C; /* Orange */
+  background-color: #F3722C; 
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -115,7 +123,7 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 button[type="submit"]:hover {
-  background-color: #F8961E; /* Dark Orange */
+  background-color: #F8961E; 
 }
 .form-input-group {
   margin-bottom: 1rem;

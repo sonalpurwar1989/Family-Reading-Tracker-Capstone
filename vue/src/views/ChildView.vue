@@ -25,11 +25,11 @@
   }
   h1 {
     font-size: 36px;
-    color: #FF6600; /* Orange */
+    color: #FF6600; 
   }
   .intro-text {
     font-size: 24px;
-    color: #3366FF; /* Blue */
+    color: #3366FF; 
     margin-bottom: 40px;
   }
   .image-container {
@@ -47,14 +47,14 @@
     margin: 0 10px;
     padding: 15px 30px;
     font-size: 18px;
-    background-color: #FFCC00; /* Yellow */
-    color: #333; /* Dark gray */
+    background-color: #FFCC00; 
+    color: #333; 
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   .main-button:hover {
-    background-color: #FF9900; /* Darker yellow */
+    background-color: #FF9900; 
   }
   </style>

@@ -13,13 +13,13 @@ export default {
 </script>
 <style scoped>
 .logout {
-  background-color: #FFF5EA; /* Light peach */
+  background-color: #FFF5EA; 
   text-align: center;
   padding: 50px;
   font-family: 'Arial', sans-serif;
 }
 h1 {
-  color: #FF6F61; /* Coral */
+  color: #FF6F61; 
   font-size: 36px;
   font-weight: bold;
 }

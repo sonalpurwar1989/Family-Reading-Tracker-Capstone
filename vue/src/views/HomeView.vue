@@ -1,14 +1,22 @@
 <template>
   <div class="home">
+    <!-- Navigation -->
+    <div class="nav">
+      <router-link :to="{ name: 'settings' }">
+        <button class="settings-button">Settings</button>
+      </router-link>
+      <router-link :to="{ name: 'logout' }">
+        <button class="logout-button">Logout</button>
+      </router-link>
+    </div>
+    <!-- Main content -->
     <h1>Welcome to Bookworm Buddies</h1>
     <p class="welcome-text">Discover the joy of reading together!</p>
+    
     <div class="image-container">
       <img class="library-image" src="src\assets\images\worm family.jpg" alt="Library">
     </div>
     <div class="button-container">
-      <router-link :to="{ name: 'book-search' }">
-        <button class="main-button">Find Books</button>
-      </router-link>
       <router-link :to="{ name: 'milestones'}">
         <button class="main-button">Milestones</button>
       </router-link>
@@ -18,41 +26,93 @@
       <router-link :to="{ name: 'select-user'}">
         <button class="main-button">Family</button>
       </router-link>
-      <div class="start-stop-buttons">
-        <button class="secondary-button">Start Reading</button>
-        <button class="secondary-button">Stop Reading</button>
-      </div>
+      <!-- Book search button -->
+      <router-link :to="{ name: 'book-search' }">
+        <button class="main-button">Book Search</button>
+      </router-link>
     </div>
+    <!-- Timer and controls -->
+    <div class="timer-controls">
+      <button @click="toggleTimer" class="main-button">{{ timerRunning ? 'Stop Timer' : 'Start Timer' }}</button>
+      <button @click="stopTimer" class="secondary-button" :disabled="!timerRunning">Stop Reading</button>
+      <button class="secondary-button">Add Manual Time</button>
+      <button class="secondary-button">Leaderboard</button>
+      <button class="secondary-button">Add Friend</button>
+    </div>
+    <!-- Minute bank -->
+    <button class="minute-bank-button">{{ readingMinutes }} min</button>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      timerRunning: false,
+      readingMinutes: 0,
+      timer: null
+    };
+  },
+  methods: {
+    toggleTimer() {
+      if (this.timerRunning) {
+        this.stopTimer();
+      } else {
+        this.startTimer();
+      }
+    },
+    startTimer() {
+      this.timerRunning = true;
+      this.timer = setInterval(() => {
+        this.readingMinutes++;
+      }, 60000); // 1 minute interval
+    },
+    stopTimer() {
+      this.timerRunning = false;
+      clearInterval(this.timer);
+    }
+  }
 };
 </script>
 <style scoped>
-.library-image {
-  max-width: 75%;
-  height: auto;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+/* Styles for navigation */
+.nav {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
+.settings-button,
+.logout-button {
+  margin: 0 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to bottom right, #6A0572, #FFD166);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.settings-button:hover,
+.logout-button:hover {
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
+}
+/* Main content styles */
 .home {
-  background-color: #FFF5EA; /* Light peach */
+  /* Gradient background */
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
+  /* Other styles */
   text-align: center;
   padding: 50px;
-  font-family: 'Arial', sans-serif;
 }
 h1 {
-  color: #FF6F61; /* Coral */
   font-size: 36px;
-  font-weight: bold;
   margin-bottom: 20px;
+  color: #2D3142; 
 }
 .welcome-text {
   font-size: 24px;
-  color: #2D3142; /* Dark blue */
   margin-bottom: 40px;
+  color: #2D3142; 
 }
 .image-container {
   margin-bottom: 25px;
@@ -64,37 +124,55 @@ h1 {
 }
 .button-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
 .main-button {
-  margin: 0 10px 20px;
+  margin: 0 10px;
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #FFD166; /* Yellow */
-  color: #2D3142; /* Dark blue */
+  background-color: #FFD166;
+  color: #2D3142;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .main-button:hover {
-  background-color: #FF9F51; /* Orange */
+  background-color: #FF9F51;
 }
 .secondary-button {
-  margin: 0 10px 20px;
+  margin: 0 10px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #6A0572; /* Purple */
+  background-color: #6A0572;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .secondary-button:hover {
-  background-color: #FF4E00; /* Red */
+  background-color: #FF4E00;
+}
+/* Timer and controls styles */
+.timer-controls {
+  margin-top: 30px;
+}
+/* Minute bank button styles */
+.minute-bank-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #FFD166;
+  color: #2D3142;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.minute-bank-button:hover {
+  background-color: #FF9F51;
 }
 </style>

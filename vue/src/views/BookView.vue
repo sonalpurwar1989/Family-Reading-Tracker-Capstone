@@ -1,95 +1,157 @@
 <template>
-  <div class="book-view">
-    <input type="text" v-model="searchQuery" @input="searchBooks" placeholder="Search by ISBN, Title, UPC" class="search-input">
-    <ul class="book-list">
-      <li v-for="book in books" :key="book.key" class="book-item">
-        <img :src="getCoverURL(book.isbn)" class="book-cover" alt="Book Cover">
-        <div class="book-details">
-          <p class="book-title">{{ book.title }}</p>
-          <p class="book-author">by {{ book.author_name.join(', ') }}</p>
-        </div>
-      </li>
-    </ul>
+  <div class="home">
+    <!-- Navigation -->
+    <div class="nav">
+      <router-link :to="{ name: 'home' }">
+        <button class="home-button">Home</button>
+      </router-link>
+      <router-link :to="{ name: 'settings' }">
+        <button class="settings-button">Settings</button>
+      </router-link>
+      <router-link :to="{ name: 'logout' }">
+        <button class="logout-button">Logout</button>
+      </router-link>
+    </div>
+    
+    <h1>Welcome to Bookworm Buddies</h1>
+    <p class="welcome-text">Discover the joy of reading together!</p>
+    <!-- Book search bar -->
+    <div class="search-container">
+      <input type="text" v-model="searchQuery" @input="searchBooks" placeholder="Search for books..." class="search-input">
+      <router-link :to="{ name: 'book-search', query: { search: searchQuery } }">
+        <button class="search-button">Search</button>
+      </router-link>
+    
+
+    </div>
+    <!-- Minute bank -->
+    <button class="minute-bank-button">{{ readingMinutes }} min</button>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      readingMinutes: 0,
       searchQuery: '',
-      books: []
+      books: [] 
     };
   },
   methods: {
-    searchBooks() {
-      // Implement the barcode search logic here -- Have to find one but hopefully it works
+    async searchBooks() {
+      // Placeholder for API call to fetch books based on search query
+      // 
     },
-    getCoverURL(isbn) {
-      return `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg`;
-    }
+    // Placeholder for API call to fetch books from the server
+    // 
+    //   
+    //    
+    //     
+    //   
+    //     
+    //   
+    // 
   }
 };
 </script>
 <style scoped>
-.book-view {
-  background-color: #FFF5EA; /* Light peach */
+
+.home-button,
+.settings-button,
+.logout-button {
+  margin: 0 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2ECC71; 
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.home-button:hover,
+.settings-button:hover,
+.logout-button:hover {
+  background-color: #27AE60; 
+}
+
+.home {
+  /* Gradient background */
+  background: linear-gradient(to bottom right, #2980B9, #2C3E50);
+  
   text-align: center;
   padding: 50px;
-  font-family: 'Arial', sans-serif;
+}
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: white;
+}
+.welcome-text {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: white;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 }
 .search-input {
-  margin-bottom: 30px;
   padding: 12px;
   font-size: 18px;
-  border: 2px solid #FF6F61; /* Coral border */
+  border: 2px solid #3498DB; 
   border-radius: 8px;
   outline: none;
 }
 .search-input::placeholder {
-  color: #2D3142; /* Dark blue placeholder text */
+  color: #ECF0F1; 
 }
-.book-list {
-  list-style: none;
-  padding: 0;
+.search-button {
+  margin-left: 10px;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #2ECC71; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-.book-item {
+.search-button:hover {
+  background-color: #27AE60; 
+}
+.book-covers {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .book-cover {
-  width: 25px;
-  height: auto;
-  margin-right: 20px;
+  margin: 20px;
+}
+.book-image {
+  max-width: 150px; 
+  
   border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-.book-details {
-  text-align: left;
-}
-.book-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #FF6F61; /* Coral title text */
-}
-.book-author {
+/* Minute bank button styles */
+.minute-bank-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
   font-size: 16px;
-  color: #2D3142; /* Dark blue author text */
+  background-color: #2ECC71; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.minute-bank-button:hover {
+  background-color: #27AE60; 
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
