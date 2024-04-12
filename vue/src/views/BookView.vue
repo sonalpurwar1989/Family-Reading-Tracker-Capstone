@@ -44,24 +44,6 @@ export default {
       // Placeholder for API call to fetch books based on search query
       // 
     },
-<<<<<<< HEAD
-    getCoverURL(isbn) {
-      return `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg`;
-    },
-    
-    getAllBooks() {
-      // TODO - Get data from API and set `topics` property
-      BookService.getAllBooks()
-      .then(response => {
-        console.log(response.data);
-        this.books = response.data;
-      });
-  }
-  
-  },
-  created() {
-    this.getAllBooks();
-=======
     // Placeholder for API call to fetch books from the server
     // 
     //   
@@ -71,7 +53,6 @@ export default {
     //     
     //   
     // 
->>>>>>> 9355d33f5f41e2df826da63b67b4bf94a37fce85
   }
   
 };
