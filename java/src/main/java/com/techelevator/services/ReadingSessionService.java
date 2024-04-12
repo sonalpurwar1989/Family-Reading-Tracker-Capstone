@@ -10,12 +10,17 @@ import java.util.List;
 @Component
 public class ReadingSessionService {
     private final ReadingSessionDao readingSessionDao;
-    private final ProgressDao progressDao;
+
+    private ProgressDao progressDao;
+
+
+
 
     @Autowired
+
     public ReadingSessionService(ReadingSessionDao readingSessionDao, ProgressDao progressDao) {
         this.readingSessionDao = readingSessionDao;
-        this.progressDao = progressDao;
+
     }
 
     public List<ReadingSession> getAllReadingSessions() {
