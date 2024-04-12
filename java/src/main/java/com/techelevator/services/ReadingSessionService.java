@@ -1,5 +1,7 @@
 package com.techelevator.services;
+import com.techelevator.dao.ProgressDao;
 import com.techelevator.dao.ReadingSessionDao;
+import com.techelevator.model.Progress;
 import com.techelevator.model.ReadingSession;
 import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,11 @@ import java.util.List;
 @Component
 public class ReadingSessionService {
     private final ReadingSessionDao readingSessionDao;
+    private final ProgressDao progressDao;
     @Autowired
-    public ReadingSessionService(ReadingSessionDao readingSessionDao) {
+    public ReadingSessionService(ReadingSessionDao readingSessionDao, ProgressDao progressDao) {
         this.readingSessionDao = readingSessionDao;
+        this.progressDao = progressDao;
     }
     public List<ReadingSession> getAllReadingSessions() {
         return readingSessionDao.findAll();
@@ -18,7 +22,7 @@ public class ReadingSessionService {
     public ReadingSession getReadingSessionById(Integer id) {
         return readingSessionDao.findById(id);
     }
-    public void createReadingSession(ReadingSession readingSession) {
+    public void createReadingSessionAndUpdateProgress(ReadingSession readingSession) {
         readingSessionDao.save(readingSession);
     }
     public void updateReadingSession(Integer id, ReadingSession updatedReadingSession) {
@@ -46,19 +50,4 @@ public class ReadingSessionService {
             System.out.println("Congratulations! You've reached the milestone of 300 minutes!");
             System.out.println("Prize unlocked, Your choice between Ice Cream or Vinyl Sticker");
         }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Progress progress = progressDao.getProgressByUserId(readingSession.getUser(

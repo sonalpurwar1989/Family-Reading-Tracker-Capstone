@@ -17,7 +17,7 @@ public class User {
    private int minutesRead;
    private Set<Authority> authorities = new HashSet<>();
    private String userType;
-   private String familiyId;
+   private String familyId;
 
    public String getUserType() {
       return userType;
@@ -27,16 +27,16 @@ public class User {
       this.userType = userType;
    }
 
-   public void setFamiliyId(String familiyId) {
-      this.familiyId = familiyId;
+   public void setFamilyId(String familyId) {
+      this.familyId = familyId;
    }
 
    public void setEmailId(String emailId) {
       this.emailId = emailId;
    }
 
-   public String getFamiliyId() {
-      return familiyId;
+   public String getFamilyId() {
+      return familyId;
    }
 
    public String getEmailId() {
@@ -51,7 +51,7 @@ public class User {
       this.minutesRead = minutesRead;
       this.authorities = authorities;
       this.userType = userType;
-      this.familiyId = familiyId;
+      this.familyId = familiyId;
       this.emailId = emailId;
    }
 

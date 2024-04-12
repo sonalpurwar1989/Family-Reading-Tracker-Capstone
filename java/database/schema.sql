@@ -60,6 +60,13 @@ CREATE TABLE progress (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (milestone_id) REFERENCES reading_milestones(milestone_id)
 );
+CREATE TABLE users_book(
+user_id INTEGER,
+book_id INTEGER,
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+FOREIGN KEY (book_id) REFERENCES book(book_id),
+PRIMARY KEY (user_id, book_id)
+);
 
 
 
