@@ -4,6 +4,11 @@
 -- DEFAULT SCHEMA FOR BASE --
 -----------------------------
 
+CREATE TABLE family (
+    family_id SERIAL PRIMARY KEY,
+    family_name VARCHAR(30) UNIQUE NOT NULL
+);
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -12,16 +17,14 @@ CREATE TABLE users (
     family_id INTEGER,
     FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
+
 CREATE TABLE book (
     book_id SERIAL PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     author VARCHAR(50),
     isbn VARCHAR(20) UNIQUE
 );
-CREATE TABLE family (
-    family_id SERIAL PRIMARY KEY,
-    family_name VARCHAR(30) UNIQUE NOT NULL
-);
+
 CREATE TABLE reading_sessions (
     session_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
