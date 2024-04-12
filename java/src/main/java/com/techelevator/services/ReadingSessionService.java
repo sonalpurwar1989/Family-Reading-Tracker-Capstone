@@ -11,20 +11,25 @@ import java.util.List;
 public class ReadingSessionService {
     private final ReadingSessionDao readingSessionDao;
     private final ProgressDao progressDao;
+
     @Autowired
     public ReadingSessionService(ReadingSessionDao readingSessionDao, ProgressDao progressDao) {
         this.readingSessionDao = readingSessionDao;
         this.progressDao = progressDao;
     }
+
     public List<ReadingSession> getAllReadingSessions() {
         return readingSessionDao.findAll();
     }
+
     public ReadingSession getReadingSessionById(Integer id) {
         return readingSessionDao.findById(id);
     }
+
     public void createReadingSessionAndUpdateProgress(ReadingSession readingSession) {
         readingSessionDao.save(readingSession);
     }
+
     public void updateReadingSession(Integer id, ReadingSession updatedReadingSession) {
         ReadingSession existingReadingSession = readingSessionDao.findById(id);
         if (existingReadingSession != null) {
@@ -34,6 +39,7 @@ public class ReadingSessionService {
             throw new RuntimeException("Reading session not found with id: " + id);
         }
     }
+
     public void deleteReadingSession(Integer id) {
         ReadingSession existingReadingSession = readingSessionDao.findById(id);
         if (existingReadingSession != null) {
@@ -42,6 +48,7 @@ public class ReadingSessionService {
             throw new RuntimeException("Reading session not found with id: " + id);
         }
     }
+
     public void recordReadingSession(ReadingSession readingSession) {
         int milestoneMinutes = 300;
         User user = readingSession.getUser();
@@ -50,4 +57,5 @@ public class ReadingSessionService {
             System.out.println("Congratulations! You've reached the milestone of 300 minutes!");
             System.out.println("Prize unlocked, Your choice between Ice Cream or Vinyl Sticker");
         }
-        Progress progress = progressDao.getProgressByUserId(readingSession.getUser(
+    }
+}
