@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE_URL ='/';
+const API_BASE_URL ='http://localhost:9000/';
 export default {
 
     getAllBooks(){
@@ -7,6 +7,14 @@ export default {
     },
     searchBooksByTitle(title){
         return axios.get(`${API_BASE_URL}books/search`, {params: {title}});
+    },
+    getBookById(id) {
+        return axios.get(`${API_BASE_URL}/book/${id}`)
+    },
+    getBookByISBN(isbn) {
+        return axios.get(`${API_BASE_URL}isbn/${isbn}`)
     }
+
+    
 
 }

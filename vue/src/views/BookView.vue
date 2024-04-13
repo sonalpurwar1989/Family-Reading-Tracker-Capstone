@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- Navigation -->
+    <!---- Navigation -->
     <div class="nav">
       <router-link :to="{ name: 'home' }">
         <button class="home-button">Home</button>
@@ -21,8 +21,16 @@
       <router-link :to="{ name: 'book-search', query: { search: searchQuery } }">
         <button class="search-button">Search</button>
       </router-link>
-    
+     </div>
 
+    <div class="book-results">
+    <ul>
+      <li v-for="book in books" :key="book.id">
+      <p>{{ book.title }} by {{ book.author }} (ISBN: {{ book.isbn }})
+        </p>
+      </li>
+
+    </ul>
     </div>
     <!-- Minute bank -->
     <button class="minute-bank-button">{{ readingMinutes }} min</button>
@@ -41,6 +49,16 @@ export default {
   },
   methods: {
     async searchBooks() {
+      if(this.searchQuery.trim.length>0) {
+        try{
+          const response=await BookService.searchBooksByTitle(this.searchQuery)
+          this.books=response.data
+        }catch(error){
+          console.error('error fetching books:', error)
+          this.books=[]
+        }
+      }
+    
       // Placeholder for API call to fetch books based on search query
       // 
     },

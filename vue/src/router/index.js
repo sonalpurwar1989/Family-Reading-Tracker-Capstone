@@ -61,7 +61,7 @@ const routes = [
     }
   },
   {
-    path: '/book',
+    path: '/books/search',
     name: 'book-search',
     component: BookView
   },
