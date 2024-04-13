@@ -11,8 +11,13 @@ import java.util.List;
 public class ReadingSessionService {
     private final ReadingSessionDao readingSessionDao;
 
+    private ProgressDao progressDao;
+
+
+
 
     @Autowired
+
     public ReadingSessionService(ReadingSessionDao readingSessionDao, ProgressDao progressDao) {
         this.readingSessionDao = readingSessionDao;
 
