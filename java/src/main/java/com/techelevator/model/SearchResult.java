@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class SearchResult {
@@ -22,6 +23,7 @@ public class SearchResult {
     private String[] isbn13;
 
     private String title;
+    private List<BookDetails> docs;
 
     public String[] getPublishers() {
         return publishers;
@@ -29,6 +31,14 @@ public class SearchResult {
 
     public void setPublishers(String[] publishers) {
         this.publishers = publishers;
+    }
+
+    public List<BookDetails> getDocs() {
+        return docs;
+    }
+
+    public void setDocs(List<BookDetails> docs) {
+        this.docs = docs;
     }
 
     public Integer getNumberOfPages() {

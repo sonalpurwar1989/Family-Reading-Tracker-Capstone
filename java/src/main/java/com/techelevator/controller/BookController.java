@@ -68,8 +68,13 @@ public class BookController {
         String tempISBN = isbn;
         return bookService.getBookByISBN(isbn);
     }
+
+    @RequestMapping(path = "/books/search", method = RequestMethod.GET)
+    public List<Book> searchBooksByTitle(@RequestParam String title) {
+        try {
+            return bookService.searchBooksByTitle(title);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to search book by title", e);
+        }
+    }
 }
-
-
-// string title
-// in book service getbookbytitle ,  get the isbn property call getbookbyisbn ,,, isbn{title}
