@@ -69,3 +69,7 @@ public class BookController {
         return bookService.getBookByISBN(isbn);
     }
 }
+
+
+// string title
+// in book service getbookbytitle ,  get the isbn property call getbookbyisbn ,,, isbn{title}
