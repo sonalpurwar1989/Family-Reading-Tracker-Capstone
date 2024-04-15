@@ -93,7 +93,7 @@ export default {
 };
 </script>
 <style scoped>
-
+/* Navigation buttons styles */
 .home-button,
 .settings-button,
 .logout-button {
@@ -102,7 +102,7 @@ export default {
   font-size: 16px;
   border: none;
   border-radius: 8px;
-  background-color: #2ECC71; 
+  background-color: #2ECC71;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -110,47 +110,51 @@ export default {
 .home-button:hover,
 .settings-button:hover,
 .logout-button:hover {
-  background-color: #27AE60; 
+  background-color: #27AE60;
 }
-
+/* Home page styles */
 .home {
   /* Gradient background */
   background: linear-gradient(to bottom right, #2980B9, #2C3E50);
-  
   text-align: center;
   padding: 50px;
 }
+/* Heading styles */
 h1 {
   font-size: 36px;
   margin-bottom: 20px;
   color: white;
 }
+/* Welcome text styles */
 .welcome-text {
   font-size: 24px;
   margin-bottom: 40px;
   color: white;
 }
+/* Search bar container styles */
 .search-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
 }
+/* Search input styles */
 .search-input {
   padding: 12px;
   font-size: 18px;
-  border: 2px solid #3498DB; 
+  border: 2px solid #3498DB;
   border-radius: 8px;
   outline: none;
 }
 .search-input::placeholder {
-  color: #ECF0F1; 
+  color: #ECF0F1;
 }
+/* Search button styles */
 .search-button {
   margin-left: 10px;
   padding: 12px 20px;
   font-size: 18px;
-  background-color: #2ECC71; 
+  background-color: #2ECC71;
   color: white;
   border: none;
   border-radius: 8px;
@@ -159,21 +163,48 @@ h1 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .search-button:hover {
-  background-color: #27AE60; 
+  background-color: #27AE60;
 }
-.book-covers {
+/* Book results container styles */
+.book-results {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
-.book-cover {
+/* Book detail component styles */
+.book-detail {
   margin: 20px;
+  text-align: center;
 }
+/* Book cover styles */
+.book-cover {
+  text-align: center;
+  margin: 15px;
+  position: relative;
+}
+/* Book cover image styles */
 .book-image {
-  max-width: 150px; 
-  
+  max-width: 100px;
+  border: 2px solid #3498DB; /* Add border to improve readability */
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Add Book and Remove Book button styles */
+.add-book-button,
+.remove-book-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #3498DB;
+  color: white;
+  border: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-book-button:hover,
+.remove-book-button:hover {
+  background-color: #2980B9;
 }
 /* Minute bank button styles */
 .minute-bank-button {
@@ -182,7 +213,7 @@ h1 {
   right: 20px;
   padding: 12px 20px;
   font-size: 16px;
-  background-color: #2ECC71; 
+  background-color: #2ECC71;
   color: white;
   border: none;
   border-radius: 8px;
@@ -190,6 +221,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 .minute-bank-button:hover {
-  background-color: #27AE60; 
+  background-color: #27AE60;
 }
 </style>
