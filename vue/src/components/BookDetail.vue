@@ -21,12 +21,17 @@
 </template>
 
 <script>
+import BookService from '../services/BookService';
 export default {
     props:['book'],
     
             methods: {
             submitBook(){
-                this.$emit('save-book', this.book)
+                BookService.addBook(this.book).then(() =>{
+        alert('Book successfully added ')
+      }).catch(error =>{
+        alert('Error saving book')
+      })
             }
         }
         
