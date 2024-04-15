@@ -13,7 +13,13 @@ export default {
     },
     getBookByISBN(isbn) {
         return axios.get(`/isbn/${isbn}`)
-    }
+    },
+    addBook(book) {
+        return axios.post('/book', book )
+    },
+  
+    
+    
 
 
 
