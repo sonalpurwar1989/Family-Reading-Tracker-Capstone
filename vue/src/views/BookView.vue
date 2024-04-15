@@ -17,20 +17,25 @@
     <p class="welcome-text">Discover the joy of reading together!</p>
     <!-- Book search bar -->
     <div class="search-container">
-      <input type="text" v-model="searchQuery" @input="searchBooks" placeholder="Search for books..." class="search-input">
-      <router-link :to="{ name: 'book-search', query: { search: searchQuery } }">
-        <button class="search-button">Search</button>
-      </router-link>
+      <input type="text" v-model="searchQuery" placeholder="Search for books..." class="search-input">
+      <!--router-link :to="{ name: 'book-search', query: { search: searchQuery } }"-->
+        <button class="search-button" v-on:click="searchBooks">Search</button>
+      <!--/router-link-->
      </div>
 
     <div class="book-results">
-    <ul>
+
+      <book-detail v-for="book in books" :key="book.id" v-bind:book='book'/>
+
+    <!-- **REPLACED WITH BOOKDETAIL**
+      <ul>
       <li v-for="book in books" :key="book.id">
       <p>{{ book.title }} by {{ book.author }} (ISBN: {{ book.isbn }})
         </p>
       </li>
 
     </ul>
+    -->
     </div>
     <!-- Minute bank -->
     <button class="minute-bank-button">{{ readingMinutes }} min</button>
@@ -38,8 +43,13 @@
 </template>
 <script>
 import BookService from '../services/BookService';
+import BookDetail from '../components/BookDetail.vue';
 
 export default {
+  components: {
+    BookDetail,
+  }, 
+
   data() {
     return {
       readingMinutes: 0,
@@ -48,15 +58,22 @@ export default {
     };
   },
   methods: {
-    async searchBooks() {
-      if(this.searchQuery.trim.length>0) {
-        try{
-          const response=await BookService.searchBooksByTitle(this.searchQuery)
-          this.books=response.data
-        }catch(error){
-          console.error('error fetching books:', error)
-          this.books=[]
+    searchBooks() {
+
+      const cleanText = this.searchQuery.trim();
+
+      if(cleanText.length > 0){
+        
+        BookService.searchBooksByTitle(cleanText).then(response => {
+          this.books = response.data;
         }
+
+        ).catch(error => {
+          this.books=[];
+          /* QUICK DEbUG DUMP OF ERROR: CONSIDER REFACTOR */
+          alert(error);
+        })
+
       }
     
       // Placeholder for API call to fetch books based on search query

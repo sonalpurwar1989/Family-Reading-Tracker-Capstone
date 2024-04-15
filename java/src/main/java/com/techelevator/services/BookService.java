@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,13 +43,19 @@ public class BookService {
 
     public List<Book> searchBooksByTitle(String title) {
         String searchUrl = OPEN_LIBRARY_SEARCH_URL + "?title=" + title.replace(" ", "+");
+
+        List<Book> intermediateList = new ArrayList<>();
+
         try {
             ResponseEntity<SearchResult> response = restTemplate.getForEntity(searchUrl, SearchResult.class);
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-                return response.getBody().getDocs().stream()
+                intermediateList = response.getBody().getDocs().stream()
                         .map(this::mapBookDetailsToBook)
                         .collect(Collectors.toList());
             }
+
+            return intermediateList.stream().filter( book -> book.getIsbn().startsWith("978")).collect(Collectors.toList());
+
         } catch (RestClientException e) {
             e.printStackTrace();
         }
@@ -65,11 +72,14 @@ public class BookService {
     }
 
     private Book mapBookDetailsToBook(BookDetails details) {
+
+        String defaultISBN = chooseAppropriateIsbn(details.getIsbn());
+
         Book book = new Book();
         book.setTitle(details.getTitle());
-        book.setIsbn(chooseAppropriateIsbn(details.getIsbn()));
+        book.setIsbn(defaultISBN);
         book.setAuthor(details.getAuthor());
-        book.setCoverURL(details.getCoverUrl());
+        book.setCoverURL("https://covers.openlibrary.org/b/isbn/" + defaultISBN + "-M.jpg");
         book.setNumberOfPages(details.getNumberOfPages());
         return book;
     }
