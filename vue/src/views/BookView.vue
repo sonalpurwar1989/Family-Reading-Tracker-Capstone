@@ -25,7 +25,7 @@
 
     <div class="book-results">
 
-      <book-detail v-for="book in books" :key="book.id" v-bind:book='book'/>
+      <book-detail v-for="book in books" :key="book.id" v-bind:book='book' @save-book="handleSaveBook"/>
 
     <!-- **REPLACED WITH BOOKDETAIL**
       <ul>
@@ -79,6 +79,15 @@ export default {
       // Placeholder for API call to fetch books based on search query
       // 
     },
+    handleSaveBook(book) {
+      BookService.addBook(book).then(() =>{
+        alert('Book successfully added ')
+        this.searchBooks()
+      }).catch(error =>{
+        alert('Error saving book')
+      })
+    
+
     // Placeholder for API call to fetch books from the server
     // 
     //   
@@ -90,7 +99,9 @@ export default {
     // 
   }
   
+}
 };
+
 </script>
 <style scoped>
 /* Navigation buttons styles */
