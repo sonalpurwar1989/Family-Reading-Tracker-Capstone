@@ -3,9 +3,9 @@
   <div id="book-block" v-if="book.isbn">
       <h4> {{book.title}}</h4>
       <img :src="book.coverURL" alt="">
-
-    <form @submit.prevent="submitBook"></form>
-    </div>
+  </div>
+    <form @submit.prevent="submitBook">
+  
    <!-- <label for="title">Title:</label> 
     <input id="title" v-model="book.title" placeholder="Enter Book Title" > -->
     <div>
@@ -17,6 +17,7 @@
         <input id="isbn" v-model="book.isbn" placeholder="Enter Isbn Number" > --> 
     </div>
     <button type="submit" >Add Book</button>
+</form>
 
 </template>
 

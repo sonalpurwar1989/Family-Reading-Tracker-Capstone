@@ -25,7 +25,7 @@
 
     <div class="book-results">
 
-      <book-detail v-for="book in books" :key="book.id" v-bind:book='book' @save-book="handleSaveBook"/>
+      <book-detail v-for="book in books" :key="book.id" v-bind:book='book'/>
 
     <!-- **REPLACED WITH BOOKDETAIL**
       <ul>
