@@ -1,8 +1,8 @@
 <template>
   <div class="prize-view">
     <div class="nav">
-      <button @click="goHome" class="home-button">Home</button>
-      <button @click="logout" class="logout-button">Logout</button>
+      
+      
     </div>
     <div class="prize-type" v-for="(prizeGroup, index) in prizeGroups" :key="index">
       <h2>{{ prizeGroup.type }}</h2>

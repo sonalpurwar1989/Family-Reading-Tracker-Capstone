@@ -19,6 +19,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -70,6 +71,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 h1 {
   color: #FF6F61; /* Coral */
@@ -78,7 +80,7 @@ h1 {
   margin-bottom: 20px;
 }
 .milestone-view {
-  background-color: #FFF5EA;
+  background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffdb9e); /* Gradient background */
   text-align: center;
   padding: 50px;
   font-family: 'Arial', sans-serif;
@@ -91,13 +93,13 @@ h1 {
   margin-top: 20px;
 }
 .progress-bar {
-  background-color: #47B881;
+  background-color: #47B881; /* Emerald */
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
 }
 .progress {
-  background-color: #FFD166;
+  background-color: #FFD166; /* Pastel Yellow */
   height: 100%;
 }
 .reading-minute-counter {
@@ -105,14 +107,14 @@ h1 {
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: #4A5568;
+  color: #4A5568; /* Cool Gray */
 }
 .main-button {
   margin: 10px;
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #FFD166;
-  color: #2D3142;
+  background-color: #FFD166; /* Pastel Yellow */
+  color: #2D3142; /* Gunmetal */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -120,13 +122,13 @@ h1 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .main-button:hover {
-  background-color: #FF9F51;
+  background-color: #FF9F51; /* Orange Peel */
 }
 .secondary-button {
-  margin: 10px;
+  margin: 50px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #6A0572;
+  background-color: #6A0572; /* Grape */
   color: white;
   border: none;
   border-radius: 6px;
@@ -135,17 +137,17 @@ h1 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .secondary-button:hover {
-  background-color: #FF4E00;
+  background-color: #FF4E00; /* Coquelicot */
 }
 .manual-time-input, .manual-date-input {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #47B881;
+  border: 2px solid #47B881; /* Emerald */
   border-radius: 8px;
   outline: none;
 }
 .manual-time-input::placeholder, .manual-date-input::placeholder {
-  color: #A0AEC0;
+  color: #A0AEC0; /* Cadet */
 }
 </style>

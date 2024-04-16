@@ -9,8 +9,11 @@ import MilestoneView from '../views/MilestoneView.vue'; // Import MilestoneView 
 import PrizeView from '../components/PrizeView.vue'; // Import Prize View Page
 import BookView from '../views/BookView.vue'; // Import Book Search page
 import SelectUser from '../views/SelectUser.vue'; // Import Select User page
-import ChildView from '../views/ChildView.vue'; // Import Child View
-import SettingsView from '../views/SettingsView.vue'
+import ChildView from '../views/ChildView.vue'; // Import Child View page
+import SettingsView from '../views/SettingsView.vue'; // Import Settings page
+import AdultCollection from '../views/AdultCollectionView.vue'; // Import Adult Library page
+import ChildCollections from '../views/ChildCollection.vue'; // Import child Library
+import MeetTheTeam from '../views/MeetTheTeamView.vue'; // Import Meet the Team and About page
 const routes = [
   {
     path: '/',
@@ -79,6 +82,21 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: SettingsView
+  },
+  {
+    path: '/meet-the-team',
+    name: 'meet-the-team',
+    component: MeetTheTeam
+  },
+  {
+    path: '/adult-collection',
+    name: 'adult-collection',
+    component: AdultCollection
+  },
+  {
+    path: '/child-collection',
+    name: 'child-collection',
+    component: ChildCollections
   }
 ];
 const router = createRouter({
