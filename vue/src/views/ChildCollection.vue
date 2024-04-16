@@ -4,15 +4,7 @@
       <div class="container">
         <h1>My Reading Nook</h1>
         
-        <!-- Book display -->
-        <div class="book-results">
-          <div v-for="book in books" :key="book.id" class="book-item">
-            <div class="book-info">
-              <book-detail :book="book" />
-              <button @click="removeBook(book.id)" class="remove-button">Remove</button>
-            </div>
-          </div>
-        </div>
+        
         
         <!-- Minute bank -->
         <button class="minute-bank-button">{{ readingMinutes }} min</button>
@@ -21,22 +13,9 @@
   </template>
   
   <script>
-  import BookService from '../services/BookService';
-  import BookDetail from '../components/BookDetail.vue';
+ 
   
-  export default {
-    components: {
-      BookDetail,
-    }, 
-  
-    data() {
-      return {
-        readingMinutes: 0,
-        books: [] 
-      };
-    },
-   
-  };
+    
   </script>
   
   <style scoped>
