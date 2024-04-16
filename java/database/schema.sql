@@ -34,7 +34,7 @@ CREATE TABLE reading_sessions (
     notes TEXT,
     session_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
 CREATE TABLE reading_milestones (
     milestone_id SERIAL PRIMARY KEY,

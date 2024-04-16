@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -38,8 +39,8 @@ public class BookController {
 
     @RequestMapping(path = "/book", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addBook(@Valid @RequestBody Book book) {
-        bookDao.saveBook(book);
+    public void addBook(@Valid @RequestBody Book book, Principal user) {
+        bookDao.saveBook(book, user.getName());
     }
 
     @RequestMapping(path = "/book/{id}", method = RequestMethod.PUT)
