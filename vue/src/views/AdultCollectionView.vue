@@ -18,21 +18,7 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        books: [] // Initialize an empty array to store added books
-      };
-    },
-    methods: {
-      removeBook(book) {
-        const index = this.books.indexOf(book);
-        if (index !== -1) {
-          this.books.splice(index, 1); // Remove the book from the array
-        }
-      }
-    }
-  };
+ 
   </script>
   
   <style scoped>

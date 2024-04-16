@@ -28,10 +28,7 @@
         <button @click="approveTimeAdditions">Approve Time Additions</button>
       </div>
     </div>
-    <!-- Home button -->
-    <router-link to="/">
-      <button class="home-button">Home</button>
-    </router-link>
+    
   </div>
 </template>
 <script>

@@ -35,31 +35,7 @@
         books: [] 
       };
     },
-    methods: {
-      // Method to fetch and display the child's added books
-      fetchBooks() {
-        // Call BookService to fetch books for the child
-        BookService.getChildBooks().then(response => {
-          this.books = response.data;
-        }).catch(error => {
-          console.error('Error fetching books:', error);
-        });
-      },
-      // Method to remove a book from the list
-      removeBook(bookId) {
-        // Call BookService to remove the book
-        BookService.removeBook(bookId).then(response => {
-          // Filter out the removed book from the list
-          this.books = this.books.filter(book => book.id !== bookId);
-        }).catch(error => {
-          console.error('Error removing book:', error);
-        });
-      }
-    },
-    mounted() {
-      // Fetch and display the child's books when the component is mounted
-      this.fetchBooks();
-    }
+   
   };
   </script>
   
