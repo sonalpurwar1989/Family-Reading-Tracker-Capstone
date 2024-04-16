@@ -25,30 +25,30 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book getBookById(Integer id) {
-        String sql = "SELECT * FROM books WHERE book_id = ?";
+        String sql = "SELECT * FROM book WHERE book_id = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BookMapper());
     }
 
 
     public List<Book> getAllBooks() {
-        String sql = "SELECT * FROM books";
+        String sql = "SELECT * FROM book";
         return jdbcTemplate.query(sql, new BookMapper());
     }
 
     @Override
     public void deleteBookById(Integer id) {
-        String sql = "DELETE FROM books WHERE book_id = ?";
+        String sql = "DELETE FROM book WHERE book_id = ?";
         jdbcTemplate.update(sql, id);
     }
 
 
     public void updateBook(Book book) {
-        String sql = "UPDATE books SET title = ?, author = ?, isbn = ? WHERE book_id = ?";
+        String sql = "UPDATE book SET title = ?, author = ?, isbn = ? WHERE book_id = ?";
         jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getIsbn(), book.getId());
     }
 
     public void saveBook(Book book) {
-        String sql = "INSERT INTO books (title, author, isbn) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO book (title, author, isbn) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getIsbn());
     }
 
