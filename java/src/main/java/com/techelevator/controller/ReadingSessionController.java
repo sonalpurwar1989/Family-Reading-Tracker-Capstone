@@ -38,7 +38,7 @@ public class ReadingSessionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void recordReadingSession(@Valid @RequestBody ReadingSession readingSession) {
-        readingSessionService.recordReadingSession(readingSession);
+        readingSessionService.recordAndUpdateReadingSession(readingSession);
     }
 
     @PutMapping("/{id}")

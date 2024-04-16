@@ -10,5 +10,7 @@ public interface ProgressDao {
 
     List<Progress> getProgressByUserId(int userId);
    void update(Progress progress);
-
+   void deleteById(int id);
+   Progress findById(int id);
+    List<Progress> findAll();
 }
