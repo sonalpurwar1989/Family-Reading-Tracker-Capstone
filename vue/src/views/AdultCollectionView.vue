@@ -1,20 +1,7 @@
 <template>
     <div class="adult-collection">
       <h1>Adult Collection View</h1>
-      <div v-if="books.length > 0" class="book-list">
-        <div v-for="book in books" :key="book.id" class="book-item">
-          <div class="book-details">
-            <img :src="book.imageUrl" :alt="book.title" class="book-image">
-            <div class="book-info">
-              <h3>{{ book.title }}</h3>
-              <p>Author: {{ book.author }}</p>
-              <button @click="removeBook(book)" class="remove-book-button">Remove</button>
-            </div>
-          </div>
-        </div>
       </div>
-      <p v-else>No books added to the collection yet.</p>
-    </div>
   </template>
   
   <script>
