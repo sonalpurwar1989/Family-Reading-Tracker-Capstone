@@ -6,9 +6,9 @@
         <img src="placeholder" alt="Kids Reading">
       </div>
       <div class="button-container">
-        <button class="main-button">whatever</button>
-        <button class="main-button">whatever</button>
-        <button class="main-button">whatever</button>
+        <button class="main-button">Home</button>
+        <button class="main-button">Logout</button>
+        <button class="main-button">Prizes</button>
       </div>
     </div>
   </template>
