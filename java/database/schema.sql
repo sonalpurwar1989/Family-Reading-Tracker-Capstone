@@ -55,9 +55,13 @@ CREATE TABLE prizes (
 CREATE TABLE progress (
     progress_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
-    milestone_id INTEGER NOT NULL,
+    book_id INTEGER,
+    milestone_id INTEGER ,
     minutes_read INTEGER NOT NULL,
+    reading_format VARCHAR(255),
+    notes TEXT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (book_id) REFERENCES book(book_id),
     FOREIGN KEY (milestone_id) REFERENCES reading_milestones(milestone_id)
 );
 CREATE TABLE users_book(

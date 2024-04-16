@@ -19,6 +19,11 @@ public class JdbcProgressDao implements ProgressDao {
         jdbcTemplate.update(sql, progress.getId(), progress.getBook(), progress.getReadingFormat(),
                 progress.getDurationMinutes(), progress.getNotes());
     }
+    public void update(Progress progress){
+        String sql = "UPDATE progress SET user_id = ?, book_id = ?, reading_format = ?, duration_minutes = ?, notes = ? WHERE progress_id = ?";
+        jdbcTemplate.update(sql, progress.getUser().getId(), progress.getBook(),
+                progress.getReadingFormat(), progress.getDurationMinutes(), progress.getNotes(), progress.getId());
+    }
     public List<Progress> getProgressByUserId(int userId) {
         String sql = "SELECT * FROM progress WHERE user_id = ?";
         return jdbcTemplate.query(sql, new ProgressMapper(), userId);

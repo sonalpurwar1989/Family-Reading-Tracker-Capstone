@@ -9,5 +9,6 @@ public interface ProgressDao {
     void saveProgress(Progress progress);
 
     List<Progress> getProgressByUserId(int userId);
+   void update(Progress progress);
 
 }

@@ -17,9 +17,9 @@ public class ReadingSessionService {
 
 
     @Autowired
-
     public ReadingSessionService(ReadingSessionDao readingSessionDao, ProgressDao progressDao) {
         this.readingSessionDao = readingSessionDao;
+        this.progressDao = progressDao;
 
     }
 
@@ -31,8 +31,9 @@ public class ReadingSessionService {
         return readingSessionDao.findById(id);
     }
 
-    public void createReadingSessionAndUpdateProgress(ReadingSession readingSession) {
+    public void recordAndUpdateReadingSession(ReadingSession readingSession) {
         readingSessionDao.save(readingSession);
+        updateProgress(readingSession);
     }
 
     public void updateReadingSession(Integer id, ReadingSession updatedReadingSession) {
@@ -54,13 +55,20 @@ public class ReadingSessionService {
         }
     }
 
-    public void recordReadingSession(ReadingSession readingSession) {
-        int milestoneMinutes = 300;
-        User user = readingSession.getUser();
-        user.setMinutesRead(user.getMinutesRead() + readingSession.getDurationMinutes());
-        if (user.getMinutesRead() >= milestoneMinutes) {
-            System.out.println("Congratulations! You've reached the milestone of 300 minutes!");
-            System.out.println("Prize unlocked, Your choice between Ice Cream or Vinyl Sticker");
+    public void updateProgress(ReadingSession readingSession){
+        List<Progress> progressList= progressDao.getProgressByUserId(readingSession.getUser().getId());
+        if(!progressList.isEmpty()){
+            Progress progress = progressList.get(0);
+            progress.setDurationMinutes(progress.getDurationMinutes() + readingSession.getDurationMinutes());
+            progressDao.update(progress);
+        }else{
+            Progress newProgress = new Progress();
+            newProgress.setUser(readingSession.getUser());
+            newProgress.setBook(readingSession.getBook().getId());
+            newProgress.setReadingFormat(readingSession.getReadingFormat());
+            newProgress.setDurationMinutes(readingSession.getDurationMinutes());
+            newProgress.setNotes("Initial reading progress");
+            progressDao.saveProgress(newProgress);
         }
     }
 }
