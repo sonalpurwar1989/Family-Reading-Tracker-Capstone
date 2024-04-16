@@ -1,17 +1,6 @@
 <template>
   <div class="home">
-    <!---- Navigation -->
-    <div class="nav">
-      <router-link :to="{ name: 'home' }">
-        <button class="home-button">Home</button>
-      </router-link>
-      <router-link :to="{ name: 'settings' }">
-        <button class="settings-button">Settings</button>
-      </router-link>
-      <router-link :to="{ name: 'logout' }">
-        <button class="logout-button">Logout</button>
-      </router-link>
-    </div>
+    
     
     <h1>Welcome to Bookworm Buddies</h1>
     <p class="welcome-text">Discover the joy of reading together!</p>
@@ -79,15 +68,6 @@ export default {
       // Placeholder for API call to fetch books based on search query
       // 
     },
-    handleSaveBook(book) {
-      BookService.addBook(book).then(() =>{
-        alert('Book successfully added ')
-        this.searchBooks()
-      }).catch(error =>{
-        alert('Error saving book')
-      })
-    
-
     // Placeholder for API call to fetch books from the server
     // 
     //   
@@ -99,9 +79,7 @@ export default {
     // 
   }
   
-}
 };
-
 </script>
 <style scoped>
 /* Navigation buttons styles */

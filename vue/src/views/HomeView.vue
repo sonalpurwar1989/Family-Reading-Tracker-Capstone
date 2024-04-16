@@ -1,14 +1,6 @@
 <template>
   <div class="home">
-    <!-- Navigation -->
-    <div class="nav">
-      <router-link :to="{ name: 'settings' }">
-        <button class="settings-button">Settings</button>
-      </router-link>
-      <router-link :to="{ name: 'logout' }">
-        <button class="logout-button">Logout</button>
-      </router-link>
-    </div>
+    
     <!-- Main content -->
     <h1>Welcome to Bookworm Buddies</h1>
     <p class="welcome-text">Discover the joy of reading together!</p>
@@ -34,14 +26,18 @@
     <!-- Timer and controls -->
     <div class="timer-controls">
       <button @click="toggleTimer" class="main-button">{{ timerRunning ? 'Stop Timer' : 'Start Timer' }}</button>
-      <button @click="stopTimer" class="secondary-button" :disabled="!timerRunning">Stop Reading</button>
+      
       <button class="secondary-button">Add Manual Time</button>
-      <button class="secondary-button">Leaderboard</button>
-      <button class="secondary-button">Add Friend</button>
+      
+    <router-link :to="{ name: 'adult-collection'}">
+    <button class="secondary-button">Book Collection</button>
+  </router-link>
+  
     </div>
     <!-- Minute bank -->
     <button class="minute-bank-button">{{ readingMinutes }} min</button>
   </div>
+
 </template>
 <script>
 export default {
