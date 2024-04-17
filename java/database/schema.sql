@@ -28,14 +28,11 @@ CREATE TABLE book (
 CREATE TABLE reading_sessions (
     session_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
-    book_id INTEGER NOT NULL,
-    reading_format VARCHAR(50),
     duration_minutes INTEGER NOT NULL,
-    notes TEXT,
     session_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (book_id) REFERENCES book(book_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
 CREATE TABLE reading_milestones (
     milestone_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

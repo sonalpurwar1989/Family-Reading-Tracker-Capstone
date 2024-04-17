@@ -35,10 +35,10 @@ public class JdbcReadingSessionDao implements ReadingSessionDao {
     }
     @Override
     public void save(ReadingSession session) {
-        String sql = "INSERT INTO reading_sessions (user_id, book_id, reading_format, duration_minutes, notes, session_date) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reading_sessions (user_id, duration_minutes, session_date) VALUES (?, ?, ?)";
         try {
-            jdbcTemplate.update(sql, session.getUser().getId(), session.getBook().getId(),
-                    session.getReadingFormat(), session.getDurationMinutes(), session.getNotes(),
+            jdbcTemplate.update(sql, session.getUser().getId(),
+                    session.getDurationMinutes(),
                     session.getSessionDate());
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Unable to save the reading session", e);
@@ -46,8 +46,8 @@ public class JdbcReadingSessionDao implements ReadingSessionDao {
     }
     @Override
     public void update(ReadingSession session) {
-        String sql = "UPDATE reading_sessions SET user_id = ?, book_id = ?, reading_format = ?, " +
-                "duration_minutes = ?, notes = ?, session_date = ? WHERE session_id = ?";
+        String sql = "UPDATE reading_sessions SET user_id = ?, " +
+                "duration_minutes = ?, session_date = ? WHERE session_id = ?";
         try {
             jdbcTemplate.update(sql, session.getUser().getId(), session.getBook().getId(),
                     session.getReadingFormat(), session.getDurationMinutes(), session.getNotes(),
@@ -85,12 +85,9 @@ public class JdbcReadingSessionDao implements ReadingSessionDao {
         User user = new User();
         user.setId(rs.getInt("user_id"));
         session.setUser(user);
-        Book book = new Book();
-        book.setId(rs.getInt("book_id"));
-        session.setBook(book);
-        session.setReadingFormat(rs.getString("reading_format"));
+
         session.setDurationMinutes(rs.getInt("duration_minutes"));
-        session.setNotes(rs.getString("notes"));
+
         session.setSessionDate(rs.getTimestamp("session_date").toLocalDateTime());
         return session;
     }
