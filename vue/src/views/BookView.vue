@@ -1,30 +1,17 @@
 <template>
   <div class="home">
-    
-    
     <h1>Welcome to Bookworm Buddies</h1>
     <p class="welcome-text">Discover the joy of reading together!</p>
     <!-- Book search bar -->
     <div class="search-container">
       <input type="text" v-model="searchQuery" placeholder="Search for books..." class="search-input">
-      <!--router-link :to="{ name: 'book-search', query: { search: searchQuery } }"-->
-        <button class="search-button" v-on:click="searchBooks">Search</button>
-      <!--/router-link-->
-     </div>
-
+      <button class="search-button" v-on:click="searchBooks">Search</button>
+    </div>
     <div class="book-results">
-
-      <book-detail v-for="book in books" :key="book.id" v-bind:book='book'/>
-
-    <!-- **REPLACED WITH BOOKDETAIL**
-      <ul>
-      <li v-for="book in books" :key="book.id">
-      <p>{{ book.title }} by {{ book.author }} (ISBN: {{ book.isbn }})
-        </p>
-      </li>
-
-    </ul>
-    -->
+      <div v-for="book in books" :key="book.id" class="book-container">
+        <book-detail :book="book" />
+        <button class="add-book-button">Add Book</button>
+      </div>
     </div>
     <!-- Minute bank -->
     <button class="minute-bank-button">{{ readingMinutes }} min</button>
@@ -33,52 +20,32 @@
 <script>
 import BookService from '../services/BookService';
 import BookDetail from '../components/BookDetail.vue';
-
 export default {
   components: {
     BookDetail,
-  }, 
-
+  },
   data() {
     return {
       readingMinutes: 0,
       searchQuery: '',
-      books: [] 
+      books: []
     };
   },
   methods: {
     searchBooks() {
-
       const cleanText = this.searchQuery.trim();
-
-      if(cleanText.length > 0){
-        
-        BookService.searchBooksByTitle(cleanText).then(response => {
-          this.books = response.data;
-        }
-
-        ).catch(error => {
-          this.books=[];
-          /* QUICK DEbUG DUMP OF ERROR: CONSIDER REFACTOR */
-          alert(error);
-        })
-
+      if (cleanText.length > 0) {
+        BookService.searchBooksByTitle(cleanText)
+          .then(response => {
+            this.books = response.data;
+          })
+          .catch(error => {
+            this.books = [];
+            alert(error);
+          });
       }
-    
-      // Placeholder for API call to fetch books based on search query
-      // 
-    },
-    // Placeholder for API call to fetch books from the server
-    // 
-    //   
-    //    
-    //     
-    //   
-    //     
-    //   
-    // 
+    }
   }
-  
 };
 </script>
 <style scoped>
@@ -103,7 +70,6 @@ export default {
 }
 /* Home page styles */
 .home {
-  /* Gradient background */
   background: linear-gradient(to bottom right, #2980B9, #2C3E50);
   text-align: center;
   padding: 50px;
@@ -159,9 +125,10 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
 }
 /* Book detail component styles */
-.book-detail {
+.book-container {
   margin: 20px;
   text-align: center;
 }
@@ -173,26 +140,25 @@ h1 {
 }
 /* Book cover image styles */
 .book-image {
-  max-width: 100px;
-  border: 2px solid #3498DB; 
+  width: 150px;
+  height: auto;
+  border: 2px solid white;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-/* Add Book and Remove Book button styles */
-.add-book-button,
-.remove-book-button {
+/* Add Book button styles */
+.add-book-button {
   margin-top: 10px;
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 12px 20px;
+  font-size: 18px;
   background-color: #3498DB;
   color: white;
-  border: 5px;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.add-book-button:hover,
-.remove-book-button:hover {
+.add-book-button:hover {
   background-color: #2980B9;
 }
 /* Minute bank button styles */
