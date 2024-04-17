@@ -74,13 +74,13 @@ export default {
 
 <style scoped>
 h1 {
-  color: #FF6F61; /* Coral */
+  color: #FF6F61; 
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 .milestone-view {
-  background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffdb9e); /* Gradient background */
+  background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffdb9e); 
   text-align: center;
   padding: 50px;
   font-family: 'Arial', sans-serif;
@@ -93,13 +93,13 @@ h1 {
   margin-top: 20px;
 }
 .progress-bar {
-  background-color: #47B881; /* Emerald */
+  background-color: #47B881; 
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
 }
 .progress {
-  background-color: #FFD166; /* Pastel Yellow */
+  background-color: #FFD166; 
   height: 100%;
 }
 .reading-minute-counter {
@@ -107,28 +107,27 @@ h1 {
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: #4A5568; /* Cool Gray */
+  color: #4A5568; 
 }
 .main-button {
   margin: 10px;
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #FFD166; /* Pastel Yellow */
-  color: #2D3142; /* Gunmetal */
-  border: none;
+  background-color: #FFD166; 
+  color: #2D3142; 
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .main-button:hover {
-  background-color: #FF9F51; /* Orange Peel */
+  background-color: #FF9F51; 
 }
 .secondary-button {
   margin: 50px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #6A0572; /* Grape */
+  background-color: #6A0572; 
   color: white;
   border: none;
   border-radius: 6px;
@@ -137,17 +136,17 @@ h1 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .secondary-button:hover {
-  background-color: #FF4E00; /* Coquelicot */
+  background-color: #FF4E00; 
 }
 .manual-time-input, .manual-date-input {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #47B881; /* Emerald */
+  border: 2px solid #47B881; 
   border-radius: 8px;
   outline: none;
 }
 .manual-time-input::placeholder, .manual-date-input::placeholder {
-  color: #A0AEC0; /* Cadet */
+  color: #A0AEC0; 
 }
 </style>

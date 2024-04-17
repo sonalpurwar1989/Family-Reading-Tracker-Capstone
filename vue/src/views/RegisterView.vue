@@ -9,10 +9,7 @@
         <label for="username">Username</label>
         <input type="text" id="username" v-model="user.username" placeholder="Enter your username" required autofocus />
       </div>
-      <div class="form-input-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" v-model="user.email" placeholder="Enter your email address" required />
-      </div>
+      
       <div class="form-input-group">
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" placeholder="Enter your password" required />
@@ -20,10 +17,6 @@
       <div class="form-input-group">
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" placeholder="Confirm your password" required />
-      </div>
-      <div class="form-input-group">
-        <label for="age">Age</label>
-        <input type="number" id="age" v-model="user.age" placeholder="Enter your age" required />
       </div>
       <button type="submit">Create Account</button>
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>

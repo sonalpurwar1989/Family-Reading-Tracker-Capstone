@@ -125,7 +125,7 @@
   
   .developer-links {
     margin-top: 20px;
-    text-align: center; /* Center align the buttons */
+    text-align: center; 
   }
   
   .linkedin-button,

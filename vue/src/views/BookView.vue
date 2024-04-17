@@ -174,7 +174,7 @@ h1 {
 /* Book cover image styles */
 .book-image {
   max-width: 100px;
-  border: 2px solid #3498DB; /* Add border to improve readability */
+  border: 2px solid #3498DB; 
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }

@@ -76,22 +76,8 @@ export default {
   top: 20px;
   left: 20px;
 }
-.settings-button,
-.logout-button {
-  margin: 0 10px;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(to bottom right, #6A0572, #FFD166);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.settings-button:hover,
-.logout-button:hover {
-  background: linear-gradient(to bottom right, #FFD166, #6A0572);
-}
+
+
 /* Main content styles */
 .home {
   /* Gradient background */
