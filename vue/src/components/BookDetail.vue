@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import ReadingSessionService from '@/services/ReadingSessionService';
 import BookService from "../services/BookService";
 export default {
   props: ["book"],
@@ -33,6 +34,7 @@ export default {
           alert("Error saving book");
         });
     },
+    
   },
 };
 </script>

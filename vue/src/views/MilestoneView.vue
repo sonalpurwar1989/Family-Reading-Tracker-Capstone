@@ -21,11 +21,15 @@
 </template>
 
 <script>
+import { toHandlers } from 'vue';
+
+
 export default {
   data() {
     return {
       milestone: {
-        progress: 0
+        progress: 0,
+        sessions:[]
       },
       readingMinutes: 0,
       timer: null,
@@ -40,6 +44,8 @@ export default {
     }
   },
   methods: {
+    
+    },
     startTimer() {
       if (!this.timerRunning) {
         this.timer = setInterval(() => {
@@ -69,7 +75,7 @@ export default {
       alert("Congratulations for adding to your minute bank!");
     }
   }
-};
+
 </script>
 
 <style scoped>
