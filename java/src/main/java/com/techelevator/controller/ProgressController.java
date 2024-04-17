@@ -47,7 +47,7 @@ public class ProgressController {
         Progress updatedProgress = progressService.updateProgress(progress);
         return new ResponseEntity<>(updatedProgress, HttpStatus.OK);
     }
-    // Delete a progress record if we want that functionality 
+    // Delete a progress record if we want that functionality
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProgress(@PathVariable int id) {
         boolean wasDeleted = progressService.deleteProgress(id);
