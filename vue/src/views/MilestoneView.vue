@@ -22,6 +22,7 @@
 
 <script>
 import { toHandlers } from 'vue';
+import ReadingSessionService from '@/services/ReadingSessionService.js';
 
 
 export default {
@@ -70,6 +71,7 @@ export default {
       // Get the date from manual input
       const date = new Date(this.manualDate);
       console.log('Manually added minutes on:', date.toDateString());
+      ReadingSessionService. recordReadingSession
     },
     showPopUp() {
       alert("Congratulations for adding to your minute bank!");
