@@ -9,7 +9,7 @@
             <button
               class="user-button"
               :class="{ 'active': user === selectedUser }"
-              @click="selectUser(user)"
+              
             >
               <div class="username-label">{{ user.username }}</div>
             </button>
@@ -52,11 +52,10 @@ export default {
     if (this.users.length > 0) {
       this.selectedUser = this.users[0];
     }
-    this.greetUser();
   },
   watch: {
     selectedUser() {
-      this.greetUser();
+      /*this.greetUser();*/
     }
   },
   methods: {
@@ -70,11 +69,11 @@ export default {
       this.selectedUser = user;
       this.isNewUser = false;
     },
-    greetUser() {
+    /*greetUser() {
       if (this.selectedUser) {
         alert(`Hi, ${this.selectedUser.username}!`);
       }
-    },
+    },*/
     showAddUserModal() {
       this.showModal = true;
     },

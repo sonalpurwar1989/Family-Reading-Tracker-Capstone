@@ -23,6 +23,11 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @RequestMapping(path = "/book/user/{id}", method = RequestMethod.GET)
+    public List<Book> getAllBooksByUser(@PathVariable int id) {
+        return bookDao.getAllBooks();
+    }
+
     @RequestMapping(path = "/book", method = RequestMethod.GET)
     public List<Book> getAllBooks() {
         return bookDao.getAllBooks();

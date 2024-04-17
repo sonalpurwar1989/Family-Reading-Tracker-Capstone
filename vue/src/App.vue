@@ -1,13 +1,13 @@
 <template>
   <div id="capstone-app">
-    <div id="nav">
+    <div id="nav" @click.prevent="resetBurger">
       <!-- Hamburger Menu -->
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
       <!-- Navigation -->
-      <div class="menu">
-        <router-link :to="{ name: 'home'}">
+      <div id="burgerList" class="menu">
+        <router-link :to="{ name: 'home' }">
           <button class="home-button">Home</button>
         </router-link>
         <router-link :to="{ name: 'meet-the-team' }">
@@ -27,7 +27,17 @@
 
 <script>
 export default {
-  
+  methods: {
+    resetBurger() {
+      const toggle = document.getElementById("burgerList");
+
+      if (toggle.style.display == "flex") {
+        toggle.style.display = "none";
+      } else {
+        toggle.style.display = "flex";
+      }
+    },
+  },
 };
 </script>
 
@@ -36,7 +46,7 @@ export default {
   font-family: Arial, sans-serif;
 }
 #nav {
-  background-color: #FFF; 
+  background-color: #fff;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -53,12 +63,13 @@ export default {
 
 .menu {
   display: none;
-}
-
-.menu-toggle:checked ~ .menu {
-  display: flex;
   flex-direction: column;
 }
+
+/* .menu-toggle:checked ~ .menu {
+  display: flex;
+  flex-direction: column;
+}*/
 
 .menu button {
   margin: 5px;

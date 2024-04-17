@@ -100,6 +100,8 @@ h1 {
   margin-bottom: 25px;
 }
 .library-image {
+  height: 150px;
+  width: 150px;
   max-width: 50%;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

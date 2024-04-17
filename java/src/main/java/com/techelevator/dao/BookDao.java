@@ -9,6 +9,8 @@ public interface BookDao {
 
     Book getBookById(Integer id);
 
+    List<Book> getBooksByUserId(Integer id);
+
     List<Book> getAllBooks();
 
     void deleteBookById(Integer id);

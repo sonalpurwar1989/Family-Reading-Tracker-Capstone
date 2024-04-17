@@ -10,7 +10,7 @@
     <div class="book-results">
       <div v-for="book in books" :key="book.id" class="book-container">
         <book-detail :book="book" />
-        <button class="add-book-button">Add Book</button>
+        <!-- button class="add-book-button">Add Book, Also</button -->
       </div>
     </div>
     <!-- Minute bank -->

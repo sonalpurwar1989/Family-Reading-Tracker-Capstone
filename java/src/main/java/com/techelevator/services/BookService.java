@@ -42,7 +42,7 @@ public class BookService {
     }
 
     public List<Book> searchBooksByTitle(String title) {
-        String searchUrl = OPEN_LIBRARY_SEARCH_URL + "?title=" + title.replace(" ", "+");
+        String searchUrl = OPEN_LIBRARY_SEARCH_URL + "?title=" + title.replace(" ", "+") + "&limit=5";
 
         List<Book> intermediateList = new ArrayList<>();
 

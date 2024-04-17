@@ -33,6 +33,13 @@ public class JdbcBookDao implements BookDao {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BookMapper());
     }
 
+    @Override
+    public List<Book> getBooksByUserId(Integer id) {
+        String sql = "SELECT b.* FROM book b INNER JOIN users_book bu ON bu.book_id = b.book_id WHERE bu.user_id = ?;";
+        return jdbcTemplate.query(sql, new BookMapper());
+
+    }
+
 
     public List<Book> getAllBooks() {
         String sql = "SELECT * FROM book";
@@ -77,6 +84,7 @@ public class JdbcBookDao implements BookDao {
             book.setTitle(rs.getString("title"));
             book.setAuthor(rs.getString("author"));
             book.setIsbn(rs.getString("isbn"));
+            book.setCoverURL("https://covers.openlibrary.org/b/isbn/" + rs.getString("isbn") + "-M.jpg");
             return book;
         }
     }

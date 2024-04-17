@@ -2,6 +2,10 @@ import axios from 'axios';
 //const API_BASE_URL ='http://localhost:9000/';
 export default {
 
+    getUserBooks(id){
+        return axios.get(`/book/user/${id}`);
+    },
+
     getAllBooks(){
      return axios.get('/book');
     },

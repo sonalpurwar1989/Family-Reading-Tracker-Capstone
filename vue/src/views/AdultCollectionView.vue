@@ -1,6 +1,12 @@
 <template>
   <div class="adult-collection">
-    <h1>Adult Collection View</h1>
+
+    <h1>My Collection</h1>
+
+    <book-detail v-for="book in books" v-bind:key="book.id" :book="book" :addDisabled="true"/>  
+
+
+<!--     
     <div class="book-list">
       <div class="book-item">
         <div class="book-details">
@@ -17,15 +23,41 @@
         <p class="book-title">Book 2 Title</p>
       </div>
       
-    </div>
+    </div> -->
   </div>
 </template>
+<script>
+import BookDetail from '../components/BookDetail.vue';
+import BookService from '../services/BookService';
+export default {
+  components: {
+    BookDetail,
+  },
+  data() {
+    return {
+      books: []
+    };
+  },
+  methods: {
+    
+  },
+  mounted(){
+    BookService.getUserBooks(this.$store.state.user.id).then(promise => this.books = promise.data);
+
+  }
+};
+</script>
+
 
 <style scoped>
+
+
+
 .adult-collection {
   text-align: center;
   padding: 50px;
   color: white;
+  background: orange;
 }
 
 .book-list {
