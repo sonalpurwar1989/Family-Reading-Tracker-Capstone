@@ -88,6 +88,11 @@ public class JdbcUserDao implements UserDao {
         return newUser;
     }
 
+    @Override
+    public void delete(int userId) {
+
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

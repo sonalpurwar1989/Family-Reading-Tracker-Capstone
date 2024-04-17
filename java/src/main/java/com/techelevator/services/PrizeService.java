@@ -3,9 +3,10 @@ package com.techelevator.services;
 import com.techelevator.dao.PrizeDao;
 import com.techelevator.model.Prize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class PrizeService {
     private final PrizeDao prizeDao;
 

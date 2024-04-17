@@ -19,7 +19,10 @@ public class User {
    private String userType;
    private String familyId;
 
-   public String getUserType() {
+    public User(int i, String user3, String user31, String roleUser) {
+    }
+
+    public String getUserType() {
       return userType;
    }
 
