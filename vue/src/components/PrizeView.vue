@@ -96,7 +96,8 @@ export default {
   text-align: center;
   padding: 50px;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom right, #1bbd43, #143cf1);
+  /* Gradient background */
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
 }
 .nav {
   position: absolute;
@@ -147,8 +148,8 @@ export default {
   font-weight: bold;
 }
 .prize-hours {
-  margin-bottom: 5px;
-  color: #666;
+  margin-bottom: 10px;
+  color: #f5eded;
 }
 .prize-button {
   margin-top: 10px;

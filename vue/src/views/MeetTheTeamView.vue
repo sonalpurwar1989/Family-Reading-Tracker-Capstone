@@ -78,7 +78,8 @@
   }
   
   .about-app {
-    background-color: #FF6F61;
+    /* Gradient background */
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
     color: white;
     padding: 50px 0;
     text-align: center;

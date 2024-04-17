@@ -9,9 +9,7 @@
       <img class="library-image" src="src\assets\images\worm family.jpg" alt="Library">
     </div>
     <div class="button-container">
-      <router-link :to="{ name: 'milestones'}">
-        <button class="main-button">Milestones</button>
-      </router-link>
+      
       <router-link :to="{ name: 'prizes'}">
         <button class="main-button">Prizes</button>
       </router-link>
@@ -25,9 +23,8 @@
     </div>
     <!-- Timer and controls -->
     <div class="timer-controls">
-      <button @click="toggleTimer" class="main-button">{{ timerRunning ? 'Stop Timer' : 'Start Timer' }}</button>
+      <button @click="toggleTimer" class="main-button">{{ timerRunning ? 'All Finished' : 'Time to Read!' }}</button>
       
-      <button class="secondary-button">Add Manual Time</button>
       
     <router-link :to="{ name: 'adult-collection'}">
     <button class="secondary-button">Book Collection</button>

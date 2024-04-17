@@ -70,7 +70,8 @@ export default {
 }
 /* Home page styles */
 .home {
-  background: linear-gradient(to bottom right, #2980B9, #2C3E50);
+  /* Gradient background */
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
   text-align: center;
   padding: 50px;
 }

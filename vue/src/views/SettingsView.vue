@@ -59,8 +59,9 @@ export default {
 </script>
 <style scoped>
 .settings {
+  
   /* Gradient background */
-  background: linear-gradient(to bottom right, #FFA69E, #72CC86);
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
   /* Other styles */
   padding: 20px;
   text-align: center;

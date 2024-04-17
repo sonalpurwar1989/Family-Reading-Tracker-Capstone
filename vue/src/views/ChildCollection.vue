@@ -14,7 +14,8 @@
 .container {
   text-align: center;
   padding: 50px;
-  background: linear-gradient(to bottom, #3498DB, #85C1E9); 
+  /* Gradient background */
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
   color: white; 
 }
 

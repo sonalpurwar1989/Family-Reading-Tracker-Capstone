@@ -82,15 +82,17 @@ export default {
 
 <style scoped>
 h1 {
-  color: #FF6F61; 
+  color: #eee5e4; 
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 .milestone-view {
-  background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffdb9e); 
+ /* Gradient background */
+
+  background: linear-gradient(to bottom right, #FFD166, #6A0572);
   text-align: center;
-  padding: 50px;
+  padding: 80px;
   font-family: 'Arial', sans-serif;
   max-width: 800px;
   margin: auto;
