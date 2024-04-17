@@ -69,32 +69,24 @@ export default {
     }
   },
   methods: {
-    addPrize() {
+    createPrize() {
       if (this.newPrize.name && this.newPrize.hours) {
         this.prizes.push({ ...this.newPrize });
         this.newPrize.name = "";
         this.newPrize.hours = null;
       }
     },
-    purchasePrize(prize) {
+    getAllPrizes() {
       // Logic to deduct reading minutes and grant prize
-      console.log("Purchased:", prize);
+      console.log
     },
-    editPrize(prize) {
+    updatePrize(prizeId,prize) {
       // Logic to edit prize details
       console.log("Edited:", prize);
     },
-    removePrize(prize) {
+    deletePrize(prizeId) {
       // Logic to remove prize
-      console.log("Removed:", prize);
-    },
-    goHome() {
-      // Logic to navigate to home
-      console.log("Go Home");
-    },
-    logout() {
-      // Logic to logout
-      console.log("Logout");
+      console.log("Removed:", );
     }
   }
 };
