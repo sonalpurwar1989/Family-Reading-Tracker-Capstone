@@ -14,7 +14,7 @@
       </div>
     </div>
     <!-- Minute bank -->
-    <button class="minute-bank-button">{{ readingMinutes }} min</button>
+    <!-- <button class="minute-bank-button">{{ readingMinutes }} min</button> -->
   </div>
 </template>
 <script>

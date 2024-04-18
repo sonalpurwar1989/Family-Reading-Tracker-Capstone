@@ -47,51 +47,67 @@ export default {
       showModal: false,
       newUsername: '',
       userType: '',
-      signedInUser: this.$store.state.user // Assuming signed-in user data is stored in Vuex state
+      signedInUser: this.$store.state.user 
     };
   },
   created() {
-    this.loadUsers();
-    if (this.users.length > 0) {
-      this.selectedUser = this.users[0];
-    }
+  this.loadUsers();
+  if (this.users.length > 0) {
+    this.selectedUser = this.users[0];
+  }
+},
+methods: {
+  loadUsers() {
+    getUsers()
+      .then(data => {
+        this.users = data;
+      })
+      .catch(error => {
+        console.error('Error loading users:', error);
+      });
   },
-  methods: {
-    loadUsers() {
-      getUsers()
-        .then(data => {
-          this.users = data;
-        });
-    },
-    selectUser(user) {
-      this.selectedUser = user;
-      this.isNewUser = false;
-    },
-    showAddUserModal() {
-      this.showModal = true;
-    },
-    closeModal() {
-      this.showModal = false;
-      this.newUsername = '';
-      this.userType = '';
-    },
-    addUser() {
-      if (this.newUsername && this.userType) {
-        const newUser = {
-          id: this.users.length + 1,
-          username: this.newUsername,
-          isChild: this.userType === 'child'
-        };
-        this.users.push(newUser);
-        this.selectedUser = newUser;
-        this.isNewUser = false;
-        this.closeModal();
-      } else {
-        alert("Please enter a username and select user type.");
-      }
+  selectUser(user) {
+    this.selectedUser = user;
+    this.isNewUser = false;
+  },
+  showAddUserModal() {
+    this.showModal = true;
+  },
+  closeModal() {
+    this.showModal = false;
+    this.newUsername = '';
+    this.userType = '';
+  },
+ /*  saveUser(newUser) {
+      // Assuming saveUser is a placeholder for the method that saves the new user
+      saveUser(newUser)
+        .then(() => {
+          this.users.push(newUser);
+          this.selectedUser = newUser;
+          this.isNewUser = false;
+          this.closeModal();
+        })
+        .catch(error => {
+          console.error('Error saving user:', error);
+          alert('Failed to save user. Please try again.');
+        }); */
+  
+  addUser() {
+    if (this.newUsername && this.userType) {
+      const newUser = {
+        id: this.users.length + 1,
+        username: this.newUsername,
+        isChild: this.userType === 'child'
+      };
+      // Save the new user
+      this.saveUser(newUser);
+    } else {
+      alert("Please enter a username and select user type.");
     }
   }
-};
+}
+}
+
 </script>
 
 <style scoped>

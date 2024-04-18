@@ -13,16 +13,16 @@
             <p class="prize-name">{{ prize.name }}</p>
             <p class="prize-hours">{{ prize.hours }} hours</p>
             <button @click="purchasePrize(prize)" class="prize-button">Purchase</button>
-            <button @click="editPrize(prize)" class="prize-button">Edit</button>
-            <button @click="removePrize(prize)" class="prize-button">Remove</button>
+            <!-- <button @click="editPrize(prize)" class="prize-button">Edit</button>
+            <button @click="removePrize(prize)" class="prize-button">Remove</button> -->
           </div>
         </div>
       </div>
     </div>
     <div class="add-prize-container">
-      <input type="text" v-model="newPrize.name" placeholder="Enter prize name" class="prize-input">
+     <!--  <input type="text" v-model="newPrize.name" placeholder="Enter prize name" class="prize-input">
       <input type="number" v-model="newPrize.hours" placeholder="Enter hours" class="prize-input">
-      <button @click="addPrize" class="add-prize-button">Add Prize</button>
+      <button @click="addPrize" class="add-prize-button">Add Prize</button> -->
     </div>
   </div>
 </template>
@@ -66,7 +66,8 @@ export default {
         groups[prize.hours].prizes.push(prize);
       });
       return Object.values(groups);
-    }
+    },
+    
   },
   methods: {
     createPrize() {
@@ -76,6 +77,7 @@ export default {
         this.newPrize.hours = null;
       }
     },
+    // Other methods for adding, editing, and deleting prizes
     getAllPrizes() {
       // Logic to deduct reading minutes and grant prize
       console.log
@@ -87,9 +89,20 @@ export default {
     deletePrize(prizeId) {
       // Logic to remove prize
       console.log("Removed:", );
-    }
+    },
+    purchasePrize(prize) {
+     
+      this.$store.commit('deductUserBalance', prize.hours);
+      
+      
+      this.prizes = this.prizes.filter(p => p !== prize);
+      
+     
+      alert("Thank you for your purchase keep reading for more!");
+    },
   }
 };
+  
 </script>
 <style scoped>
 .prize-view {

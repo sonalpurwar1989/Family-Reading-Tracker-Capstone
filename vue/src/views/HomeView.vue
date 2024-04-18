@@ -3,7 +3,7 @@
     <h1>Welcome to Bookworm Buddies</h1>
     <p class="intro-text">Discover the joy of reading together!</p>
     <div class="image-container">
-      <img class="library-image" src="src\assets\images\worm family.jpg" alt="Library">
+      <img class="library-image" src="src/assets/images/worm family.jpg" alt="Library">
     </div>
     <div class="button-container">
       <router-link :to="{ name: 'prizes'}">
@@ -56,7 +56,7 @@ export default {
       
       this.saveSession(minutesToAdd);
       
-      this.addedMinutes = minutesToAdd;
+      this.addedMinutes = this.addedMinutes !== null ? this.addedMinutes + minutesToAdd : minutesToAdd;
       alert(`${minutesToAdd} minutes added successfully.`);
       this.manualTime = null; 
     },

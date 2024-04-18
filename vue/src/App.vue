@@ -27,17 +27,17 @@
         <button class="main-button">Kiddie Land</button>
       </router-link>
 
-      <router-link :to="{ name: 'select-user'}">
+      <!-- <router-link :to="{ name: 'select-user'}">
         <button class="main-button">+ Family Member</button>
-      </router-link>
+      </router-link> -->
 
         <router-link :to="{ name: 'meet-the-team' }">
           <button class="about-button">About</button>
         </router-link>
 
-        <router-link :to="{ name: 'settings' }">
+        <!-- <router-link :to="{ name: 'settings' }">
           <button class="settings-button">Settings</button>
-        </router-link>
+        </router-link> -->
 
         <router-link :to="{ name: 'logout' }">
           <button class="logout-button">Logout</button>
