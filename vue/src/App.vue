@@ -26,10 +26,14 @@
       <router-link :to="{ name: 'child-view' }">
         <button class="main-button">Kiddie Land</button>
       </router-link>
+      
+      <router-link :to="{ name: 'prizes'}">
+        <button class="main-button">Prizes</button>
+      </router-link>
 
-      <!-- <router-link :to="{ name: 'select-user'}">
+       <router-link :to="{ name: 'select-user'}">
         <button class="main-button">+ Family Member</button>
-      </router-link> -->
+       </router-link>
 
         <router-link :to="{ name: 'meet-the-team' }">
           <button class="about-button">About</button>
