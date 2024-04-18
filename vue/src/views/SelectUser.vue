@@ -9,14 +9,14 @@
             <button
               class="user-button"
               :class="{ 'active': user === selectedUser }"
-              
+              @click="selectUser(user)"
             >
               <div class="username-label">{{ user.username }}</div>
             </button>
           </router-link>
         </div>
       </div>
-      <button class="add-user-button" @click="showAddUserModal">+</button>
+      <button class="add-user-button" @click="showAddUserModal"></button>
     </div>
     <!-- Add user modal -->
     <div v-if="showModal" class="modal">
@@ -35,7 +35,8 @@
 </template>
 
 <script>
-import  getUsers  from '@/services/UserService'
+import getUsers from '@/services/UserService';
+
 export default {
   data() {
     return {
@@ -50,39 +51,22 @@ export default {
     };
   },
   created() {
-    this.fetchUsers();
+    this.loadUsers();
     if (this.users.length > 0) {
       this.selectedUser = this.users[0];
     }
   },
-  watch: {
-    selectedUser() {
-      /*this.greetUser();*/
-    }
-  },
-  mounted(){
-    this.loadUsers();
-  },
   methods: {
-   loadUsers(){
-    getUsers()
-    .then(data =>{
-        this.users =data;
-      })
-      
-      this.users = [
-        { id: 1, username: this.signedInUser.username, isChild: false } 
-      ];
+    loadUsers() {
+      getUsers()
+        .then(data => {
+          this.users = data;
+        });
     },
     selectUser(user) {
       this.selectedUser = user;
       this.isNewUser = false;
     },
-    /*greetUser() {
-      if (this.selectedUser) {
-        alert(`Hi, ${this.selectedUser.username}!`);
-      }
-    },*/
     showAddUserModal() {
       this.showModal = true;
     },
@@ -149,9 +133,6 @@ export default {
   background-color: #fff;
 }
 
-
-
-
 .user-button .username-label {
   position: absolute;
   bottom: -25px; 
@@ -208,7 +189,6 @@ export default {
 }
 
 .add-user-button:hover {
-
   transform: scale(1.5); 
 }
 

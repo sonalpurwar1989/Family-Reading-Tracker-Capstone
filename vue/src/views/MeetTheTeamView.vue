@@ -123,10 +123,10 @@ export default {
 .developer-picture {
   width: 200px;
   height: 200px;
-  background-color: #050505; /* Placeholder color */
+  background-color: #050505; 
   border-radius: 50%;
   margin: 0 auto 20px; /* Centering the image */
-  display: block; /* Ensuring the image is a block element */
+  display: block; 
 }
 .developer-name {
   font-size: 24px;

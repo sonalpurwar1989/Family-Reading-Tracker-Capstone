@@ -7,11 +7,11 @@
           <div class="progress" :style="{ width: progressBarWidth + '%' }"></div>
         </div>
       </div>
-      <div class="reading-minute-counter">{{ readingMinutes }}</div>
-      <button @click="startTimer" :disabled="timerRunning" class="main-button">{{ timerRunning ? 'Timer Running' : 'Start Reading' }}</button>
-      <button @click="stopTimer" :disabled="!timerRunning" class="secondary-button">Stop Reading</button>
+      <div class="reading-minute-counter">{{ readingMinutes }} min</div>
+      <!-- <button @click="startTimer" :disabled="timerRunning" class="main-button">{{ timerRunning ? 'Timer Running' : 'Start Reading' }}</button>
+      <button @click="stopTimer" :disabled="!timerRunning" class="secondary-button">Stop Reading</button> -->
       <input type="number" v-model="manualTime" placeholder="Enter minutes manually" class="manual-time-input">
-      <input type="date" v-model="manualDate" placeholder="Select date" class="manual-date-input">
+      <!-- <input type="date" v-model="manualDate" placeholder="Select date" class="manual-date-input"> -->
       <button @click="addManualTime" class="main-button">Add Manual Time</button>
     </div>
     <div v-else>
@@ -21,9 +21,7 @@
 </template>
 
 <script>
-import { toHandlers } from 'vue';
 import ReadingSessionService from '@/services/ReadingSessionService.js';
-
 
 export default {
   data() {
@@ -47,8 +45,6 @@ export default {
     }
   },
   methods: {
-    
-    
     startTimer() {
       if (!this.timerRunning) {
         this.timer = setInterval(() => {
@@ -67,43 +63,47 @@ export default {
       this.timerRunning = false;
     },
     addManualTime() {
-    
-    this.readingMinutes += parseInt(this.manualTime);
-    this.milestone.progress += parseInt(this.manualTime);
-    
-    this.manualTime = 0;
-   
-    const date = new Date(this.manualDate);
-    console.log('Manually added minutes on:', date.toDateString());
-    
-    ReadingSessionService.recordReadingSession({
-      userId: this.selectedUser,
-      durationMinutes: parseInt(this.manualTime)
-    }).then(() => {
+      if (!this.manualTime || isNaN(parseInt(this.manualTime))) {
+        alert('Please enter a valid number');
+        return;
+      }
+      
+      const minutesToAdd = parseInt(this.manualTime);
+      
+      this.readingMinutes += minutesToAdd;
+      
+      this.saveSession(minutesToAdd);
+      
+      alert(`${minutesToAdd} minutes added successfully.`);
+      this.manualTime = 0; 
+    },
+    showPopUp() {
       alert("Congratulations for adding to your minute bank!");
-    }).catch(error => {
-      console.error('Reading time not added:', error);
-    });
-  },
-  showPopUp() {
-    alert("Congratulations for adding to your minute bank!");
-  },
+    },
+    saveSession(minutesToAdd) {
+      //
+      ReadingSessionService.recordReadingSession({
+        userId: this.selectedUser,
+        durationMinutes: minutesToAdd
+      }).then(() => {
+        console.log("Reading session saved successfully");
+      }).catch(error => {
+        console.error('Error saving reading session:', error);
+      });
+    }
+  }
 }
-}
-  
-
 </script>
 
 <style scoped>
 h1 {
-  color: #eee5e4; 
+  color: #eee5e4;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 .milestone-view {
- /* Gradient background */
-
+  /* Gradient background */
   background: linear-gradient(to bottom right, #FFD166, #6A0572);
   text-align: center;
   padding: 80px;
@@ -117,13 +117,13 @@ h1 {
   margin-top: 20px;
 }
 .progress-bar {
-  background-color: #47B881; 
+  background-color: #47B881;
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
 }
 .progress {
-  background-color: #FFD166; 
+  background-color: #FFD166;
   height: 100%;
 }
 .reading-minute-counter {
@@ -131,27 +131,27 @@ h1 {
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: #4A5568; 
+  color: #4A5568;
 }
 .main-button {
   margin: 10px;
   padding: 12px 30px;
   font-size: 18px;
-  background-color: #FFD166; 
-  color: #2D3142; 
+  background-color: #FFD166;
+  color: #2D3142;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .main-button:hover {
-  background-color: #FF9F51; 
+  background-color: #FF9F51;
 }
 .secondary-button {
   margin: 50px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #6A0572; 
+  background-color: #6A0572;
   color: white;
   border: none;
   border-radius: 6px;
@@ -160,17 +160,18 @@ h1 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .secondary-button:hover {
-  background-color: #FF4E00; 
+  background-color: #FF4E00;
 }
-.manual-time-input, .manual-date-input {
+.manual-time-input {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #47B881; 
+  border: 2px solid #47B881;
   border-radius: 8px;
   outline: none;
-}
-.manual-time-input::placeholder, .manual-date-input::placeholder {
-  color: #A0AEC0; 
+} 
+.manual-time-input::placeholder,
+.manual-date-input::placeholder {
+  color: #A0AEC0;
 }
 </style>

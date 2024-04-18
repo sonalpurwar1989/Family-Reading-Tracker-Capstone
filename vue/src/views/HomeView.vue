@@ -19,78 +19,64 @@
     </div>
     <!-- Timer and controls -->
     <div class="timer-controls">
-      <button @click="toggleTimer" class="main-button">{{ timerRunning ? 'All Finished' : 'Time to Read!' }} </button>
+      <input type="number" v-model="manualTime" placeholder="Enter time in minutes" class="time-input">
+      <button @click="addManualTime" class="add-time-button">Add Minutes</button>
     </div>
-    <router-link :to="{ name: 'adult-collection'}">
-      <button class="secondary-button">Book Collection</button>
-    </router-link>
-    <!-- Minute bank -->
-    <button class="minute-bank-button">{{ readingMinutes }} min</button>
-    <select v-model="selectedUser" required>
-      <option v-for="user in users" :key="user.id" :value="user.id">{{ user.username }}</option>
-    </select>
     <div>
-      <span>{{ elapseMinutes }} </span>
+      <button v-if="addedMinutes !== null" class="minute-bank-button">{{ addedMinutes }} min</button>
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 import ReadingSessionService from '@/services/ReadingSessionService';
+
 export default {
   data() {
     return {
-      timerRunning: false,
-      readingMinutes: 0,
-      timer: null,
-      elapseMinutes: 0,
-      selectedUser: '',
+      manualTime: null,
+      addedMinutes: null,
     };
   },
+  computed: {
+    userReadingMinutes() {
+      return this.$store.state.user.readingMinutes;
+    }
+  },
   methods: {
-    toggleTimer() {
-      if (this.timerRunning) {
-        this.stopTimer();
-      } else {
-        this.startTimer();
+    addManualTime() {
+      if (!this.manualTime || isNaN(parseInt(this.manualTime))) {
+        alert('Please enter a valid number');
+        return;
       }
+      const minutesToAdd = parseInt(this.manualTime);
+      
+      this.$store.commit('updateUserReadingMinutes', minutesToAdd);
+      
+      this.saveSession(minutesToAdd);
+      
+      this.addedMinutes = minutesToAdd;
+      alert(`${minutesToAdd} minutes added successfully.`);
+      this.manualTime = null; 
     },
-    startTimer() {
-      this.startTime = Date.now();
-      this.timer = setInterval(() => {
-        this.elapseMinutes = Math.floor((Date.now() - this.startTime) / 60000);
-      }, 1000); // 1 minute interval
-    },
-    stopTimer() {
-      clearInterval(this.timer);
-      this.timer = null;
-    },
-    saveSession() {
+    saveSession(minutesToAdd) {
       axios.post('/reading-sessions', {
-        userId: this.selectedUser,
-        elapseMinutes: this.elapseMinutes,
+        userId: this.$store.state.user.id, 
+        elapseMinutes: minutesToAdd,
       })
       .then(response => {
-        alert('time saved');
+        console.log('Reading Session saved successfully:', response.data);
+        alert('Time saved successfully');
       })
       .catch(error => {
         console.error('Error saving session:', error);
-      });
-      ReadingSessionService.createReadingSession({
-        userId: this.selectedUser,
-        durationMinutes: this.elapseMinutes,
-      })
-      .then(() =>{
-        alert('session saved successfully');
-        this.elapseMinutes = 0; // Reset the timer
-      })
-      .catch(error => {
-        console.error('Error creating reading session:', error);
       });
     },
   },
 };
 </script>
+
 <style scoped>
 .home-view {
   text-align: center;
@@ -131,27 +117,29 @@ h1 {
 .main-button:hover {
   background-color: #FF9F51;
 }
-.secondary-button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #6A0572;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.secondary-button:hover {
-  background-color: #FF4E00;
-}
 .timer-controls {
   margin-top: 30px;
 }
+.time-input {
+  padding: 10px;
+  margin-right: 10px;
+  width: 150px;
+  font-size: 16px;
+}
+.add-time-button {
+  padding: 12px 30px;
+  font-size: 16px;
+  background-color: #FFD166;
+  color: #2D3142;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-time-button:hover {
+  background-color: #FF9F51;
+}
 .minute-bank-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
   padding: 12px 20px;
   font-size: 16px;
   background-color: #FFD166;
