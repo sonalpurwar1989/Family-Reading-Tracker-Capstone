@@ -30,7 +30,9 @@ export default {
     return {
       milestone: {
         progress: 0,
-        sessions:[]
+        sessions:[],
+        selectedUser: '',
+        duration: ''
       },
       readingMinutes: 0,
       timer: null,
@@ -46,7 +48,7 @@ export default {
   },
   methods: {
     
-    },
+    
     startTimer() {
       if (!this.timerRunning) {
         this.timer = setInterval(() => {
@@ -65,18 +67,30 @@ export default {
       this.timerRunning = false;
     },
     addManualTime() {
-      this.readingMinutes += parseInt(this.manualTime);
-      this.milestone.progress += parseInt(this.manualTime);
-      this.manualTime = 0;
-      // Get the date from manual input
-      const date = new Date(this.manualDate);
-      console.log('Manually added minutes on:', date.toDateString());
-      ReadingSessionService. recordReadingSession
-    },
-    showPopUp() {
+    
+    this.readingMinutes += parseInt(this.manualTime);
+    this.milestone.progress += parseInt(this.manualTime);
+    
+    this.manualTime = 0;
+   
+    const date = new Date(this.manualDate);
+    console.log('Manually added minutes on:', date.toDateString());
+    
+    ReadingSessionService.recordReadingSession({
+      userId: this.selectedUser,
+      durationMinutes: parseInt(this.manualTime)
+    }).then(() => {
       alert("Congratulations for adding to your minute bank!");
-    }
-  }
+    }).catch(error => {
+      console.error('Reading time not added:', error);
+    });
+  },
+  showPopUp() {
+    alert("Congratulations for adding to your minute bank!");
+  },
+}
+}
+  
 
 </script>
 

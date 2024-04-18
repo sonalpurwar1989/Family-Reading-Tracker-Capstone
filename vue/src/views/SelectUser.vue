@@ -35,11 +35,13 @@
 </template>
 
 <script>
+import  getUsers  from '@/services/UserService'
 export default {
   data() {
     return {
       users: [],
       selectedUser: null,
+      duration: '',
       isNewUser: true,
       showModal: false,
       newUsername: '',
@@ -58,8 +60,15 @@ export default {
       /*this.greetUser();*/
     }
   },
+  mounted(){
+    this.loadUsers();
+  },
   methods: {
-    async fetchUsers() {
+   loadUsers(){
+    getUsers()
+    .then(data =>{
+        this.users =data;
+      })
       
       this.users = [
         { id: 1, username: this.signedInUser.username, isChild: false } 
