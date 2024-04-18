@@ -24,7 +24,7 @@
   </router-link>
 
       <router-link :to="{ name: 'child-view' }">
-        <button calss="main-button">Kiddie Land</button>
+        <button class="main-button">Kiddie Land</button>
       </router-link>
 
       <router-link :to="{ name: 'select-user'}">
